@@ -30,6 +30,10 @@ namespace EntregaProyecto2
 
 
         }
+        public SongClass()
+        {
+
+        }
         public string Format { get => format; set => format = value; }
         public string Composer { get => composer; set => composer = value; }
         public string Singer { get => singer; set => singer = value; }

@@ -29,6 +29,10 @@ namespace EntregaProyecto2
             this.Director = director;  //Listo
             this.format = format;
         }
+        public Video()
+        {
+
+        }
         public string Director { get => director; set => director = value; }
         public string Format { get => format; set => format = value; }
         //public List<Actor> Actors { get => actors; set => actors = value; }
