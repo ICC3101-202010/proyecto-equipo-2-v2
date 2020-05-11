@@ -31,6 +31,39 @@ namespace EntregaProyecto2
             }
         }
 
+        public void ChangeEmail(string usr, string newpsswd)
+        {
+            foreach (List<string> user in this.registered.Values)
+            {
+                if (user[0] == usr)
+                {
+                    user[1] = newpsswd;
+                }
+            }
+        }
+
+
+        public void ChangeTargetPay(string usr, string newpsswd)
+        {
+            foreach (List<string> user in this.registered.Values)
+            {
+                if (user[0] == usr)
+                {
+                    user[5] = newpsswd;
+                }
+            }
+        }
+        public void ChangePlan(string usr, string newpsswd)
+        {
+            foreach (List<string> user in this.registered.Values)
+            {
+                if (user[0] == usr)
+                {
+                    user[4] = newpsswd;
+                }
+            }
+        }
+
 
         public void IniciarSecion(string usr)
         {

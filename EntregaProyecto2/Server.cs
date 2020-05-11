@@ -38,6 +38,11 @@ namespace EntregaProyecto2
             this.Data = data;
         }
 
+
+
+
+
+
         public void ChangePassword()
         {
             Console.WriteLine("Ingresa tu nombre de usuario: ");
@@ -64,6 +69,104 @@ namespace EntregaProyecto2
                 Console.WriteLine("[!] ERROR: " + result + "\n");
             }
         }
+        public void ChangeEmail()
+        {
+            Console.WriteLine("Ingresa tu nombre de usuario: ");
+            string usr = Console.ReadLine();
+            Console.WriteLine("Ingresa tu contrasena: ");
+            string pswd = Console.ReadLine();
+            string result = Data.LogIn(usr, pswd);
+            if (result == null)
+            {
+
+                Console.Write("Ingrese el nuevo Email: ");
+                string newPsswd = Console.ReadLine();
+                Data.ChangeEmail(usr, newPsswd);
+                List<string> data = Data.GetData(usr);
+                
+                Console.WriteLine("Email cambiado con exito\n");
+                Thread.Sleep(2000);
+                Console.WriteLine("secion cerrada, para continuar ingrese nuevamente");
+                Thread.Sleep(2000);
+            }
+            else
+            {
+
+                Console.WriteLine("[!] ERROR: " + result + "\n");
+            }
+        }
+
+        public void ChangeTargetPay()
+        {
+            Console.WriteLine("Ingresa tu nombre de usuario: ");
+            string usr = Console.ReadLine();
+            Console.WriteLine("Ingresa tu contrasena: ");
+            string pswd = Console.ReadLine();
+            string result = Data.LogIn(usr, pswd);
+            if (result == null)
+            {
+
+                Console.Write("Ingrese el nuevo Numero de su tarjeta: ");
+                string newPsswd = Console.ReadLine();
+                Data.ChangeTargetPay(usr, newPsswd);
+                List<string> data = Data.GetData(usr);
+
+                Console.WriteLine("Medio de pago cambiado con exito\n");
+                Thread.Sleep(2000);
+                Console.WriteLine("secion cerrada, para continuar ingrese nuevamente");
+                Thread.Sleep(2000);
+            }
+            else
+            {
+
+                Console.WriteLine("[!] ERROR: " + result + "\n");
+            }
+        }
+
+
+
+        public void ChangePlan()
+        {
+            Console.WriteLine("Al hacer esto se perdera toda su informacion ");
+            Thread.Sleep(2000);
+            Console.WriteLine("Ingresa tu nombre de usuario: ");
+            string usr = Console.ReadLine();
+            Console.WriteLine("Ingresa tu contrasena: ");
+            string pswd = Console.ReadLine();
+            string result = Data.LogIn(usr, pswd);
+            if (result == null)
+            {
+
+                Console.WriteLine("ingrese tipo de plan\n");
+                Console.WriteLine("1)plan Basico \n");
+                Console.WriteLine("2)plan premiun (personal) $3,990\n");
+                Console.WriteLine("3)plan familiar (4 usuarios) $7,990\n");
+                string op = Console.ReadLine();
+                int plan = Int32.Parse(op);
+
+                string newPsswd = Console.ReadLine();
+                Data.ChangePlan(usr, newPsswd);
+                List<string> data = Data.GetData(usr);
+
+                Console.WriteLine("Medio de pago cambiado con exito\n");
+                Thread.Sleep(2000);
+                Console.WriteLine("acontinuacion complete ");
+                Thread.Sleep(2000);
+            }
+            else
+            {
+
+                Console.WriteLine("[!] ERROR: " + result + "\n");
+                
+            }
+        }
+
+
+
+
+
+
+
 
         public void InicioSecion()
         {

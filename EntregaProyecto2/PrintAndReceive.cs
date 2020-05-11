@@ -60,26 +60,33 @@ namespace EntregaProyecto2
             Console.WriteLine("3)Busqueda por evaluacion");
             Console.WriteLine("4)Busqueda por palabra clave");
         }
-        public void PrintMenu6()
+        public void PrintMenu6()//ajustes solo para plan familiar
         {
             Console.WriteLine("1)Cambiar Perfil");
             Console.WriteLine("2)Agregar Perfil");
             Console.WriteLine("3)Eliminar Perfil");
             Console.WriteLine("4)Cambiar Plan");
             Console.WriteLine("5)Cambiar Tarjeta de pago");
-            Console.WriteLine("6)Cambiar contraseña");//funcionando
+            Console.WriteLine("6)Cambiar contraseña");
+            Console.WriteLine("7)Cambiar email");
+            Console.WriteLine("8)Volver");
 
         }
+        public void PrintMenu61()//ajustes solo para premiun y basic
+        {
+            Console.WriteLine("1)Cambiar Plan");
+            Console.WriteLine("2)Cambiar Tarjeta de pago");
+            Console.WriteLine("3)Cambiar contraseña");
+            Console.WriteLine("4)cambiar Email");
+            Console.WriteLine("5)Volver");
+        }
+
         public void PrintMenu7()
         {
             Console.WriteLine("Gracias , volvera al menu de inicio");
 
         }
 
-
-
     }
-
-
 
 }

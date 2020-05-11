@@ -84,10 +84,9 @@ namespace EntregaProyecto2
                     case "LogIn":
                         Console.Clear();
                         server.InicioSecion();
-                        string plan = Console.ReadLine();
-                        user.Plan = plan;
+                      
 
-                        Console.WriteLine(user.Plan);
+                        
 
                         if (user.Plan == "1") // ESTO SE TIENE QUE ARREGLAR
                         {
@@ -101,7 +100,40 @@ namespace EntregaProyecto2
 
                             if (ma == 3)
                             {
+                                printAndReceive.PrintMenu61();
+                                int me;
 
+                                me = int.Parse(Console.ReadLine());
+                                if (me == 1)
+                                {
+
+
+                                    server.ChangePlan();
+                                    //aca si hay que veer si es familiar ,basico o premiu  para volver a crear perfiles
+                                }
+                                if (me == 2)
+                                {
+                                    server.ChangeTargetPay();
+                                    break;
+                                }
+                                if (me == 3)
+                                {
+                                    server.ChangePassword();
+
+                                    break;
+
+                                }
+                                if (me == 4)
+                                {
+                                    server.ChangeEmail();
+                                    break;
+
+                                }
+                                if (me == 5)
+                                {
+                                    printAndReceive.PrintMenu7();
+                                    break;
+                                }
 
                             }
 
@@ -184,7 +216,7 @@ namespace EntregaProyecto2
                             }
                             if (ma == 6)
                             {
-                                printAndReceive.PrintMenu7();
+                                printAndReceive.PrintMenu61();
                                 int me;
 
                                 me = int.Parse(Console.ReadLine());
@@ -192,9 +224,14 @@ namespace EntregaProyecto2
                                 {
 
 
-
+                                    server.ChangePlan();
+                                    //aca si hay que veer si es familiar ,basico o premiu  para volver a crear perfiles
                                 }
-                                if (me == 2) { }
+                                if (me == 2)
+                                {
+                                    server.ChangeTargetPay();
+                                    break;
+                                }
                                 if (me == 3)
                                 {
                                     server.ChangePassword();
@@ -204,15 +241,18 @@ namespace EntregaProyecto2
                                 }
                                 if (me == 4)
                                 {
+                                    server.ChangeEmail();
+                                    break;
+
+                                }
+                                if (me == 5)
+                                {
+                                    printAndReceive.PrintMenu7();
                                     break;
                                 }
 
                             }
-                            //if (ma == 7)
-                            //{
-                            // printAndReceive.PrintMenu8();
-                            //  break;
-                            //}
+                         
 
                         }
 

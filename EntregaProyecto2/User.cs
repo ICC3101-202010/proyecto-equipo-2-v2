@@ -30,9 +30,7 @@ namespace EntregaProyecto2
         public User()
         {
         }
-
-
-
+     
 
         // Atributo BaseDatos
 
@@ -111,14 +109,8 @@ namespace EntregaProyecto2
         {
             return true;
         }
-        public bool CambiarCorreo()
-        {
-            return true;
-        }
-        public bool CambiarContraseña()
-        {
-            return true;
-        }
+
+
         public bool CambiarInfoPago()
         {
             return true;
@@ -131,6 +123,31 @@ namespace EntregaProyecto2
         {
             return true;
         }
+
+
+        //probando
+
+       
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
