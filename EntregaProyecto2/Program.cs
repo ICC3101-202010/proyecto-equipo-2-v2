@@ -23,6 +23,8 @@ namespace EntregaProyecto2
 
             User user = new User();  //creamos el objeto de la nueva clase
             PrintAndReceive printAndReceive = new PrintAndReceive();
+            SongClass cancion = new SongClass();
+            Video video = new Video();
 
 
 
@@ -52,8 +54,6 @@ namespace EntregaProyecto2
                     case "Registrarse":
                         Console.Clear();
                         server.Register();
-                        SaveUser(user)
-                        
 
                         if (user.Plan == "1")
                         {
@@ -272,7 +272,6 @@ namespace EntregaProyecto2
                                 if (me == 3)
                                 {
                                     server.ChangePassword();
-
                                     break;
 
                                 }
@@ -413,6 +412,7 @@ namespace EntregaProyecto2
             }
         }
 
+
         // Metodo para mostrar las opciones posibles
         private static string ShowOptions(List<string> options)
         {
@@ -438,7 +438,7 @@ namespace EntregaProyecto2
         //Metodo para guardar el usuario registrado.
         //Se tiene que hacer cada vez que se registra un usuario. 
         //Subir usuario.
-        static private void SaveUser(Dictionary<int,)
+        static private void SaveUser(List<User> usuario)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
