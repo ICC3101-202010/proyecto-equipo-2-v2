@@ -16,8 +16,10 @@ namespace EntregaProyecto2
             Console.WriteLine("3)playlis video");
             Console.WriteLine("4)Buscar Musica");
             Console.WriteLine("5)Buscar Video");
-            Console.WriteLine("6)ajustes");
-            Console.WriteLine("7)salir");
+            Console.WriteLine("6)Importar Cancion");
+            Console.WriteLine("7)Importar Video");
+            Console.WriteLine("8)ajustes");
+            Console.WriteLine("9)salir");
         }
 
         public void MenuBasicPlan() //para usuarios plan basico

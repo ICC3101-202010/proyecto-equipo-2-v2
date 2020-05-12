@@ -23,9 +23,9 @@ namespace EntregaProyecto2
 
             User user = new User();  //creamos el objeto de la nueva clase
             PrintAndReceive printAndReceive = new PrintAndReceive();
+
             SongClass cancion = new SongClass();
             Video video = new Video();
-
 
 
 
@@ -54,6 +54,8 @@ namespace EntregaProyecto2
                     case "Registrarse":
                         Console.Clear();
                         server.Register();
+                        
+                        
 
                         if (user.Plan == "1")
                         {
@@ -86,9 +88,11 @@ namespace EntregaProyecto2
                     case "LogIn":
                         Console.Clear();
                         server.InicioSecion();
-                      
+                     
 
-                        
+
+
+
 
                         if (user.Plan == "1") // ESTO SE TIENE QUE ARREGLAR
                         {
@@ -251,7 +255,25 @@ namespace EntregaProyecto2
                             {
                                 printAndReceive.PrintMenu5();
                             }
+
+
                             if (ma == 6)
+                            {
+                                AddSong1(cancion);
+                                break;
+
+
+                            }
+                            if (ma == 7)
+                            {
+                                AddVideo(video);
+                                break;
+                            }
+
+
+
+
+                            if (ma == 8)
                             {
                                 printAndReceive.PrintMenu61();
                                 int me;
@@ -272,6 +294,7 @@ namespace EntregaProyecto2
                                 if (me == 3)
                                 {
                                     server.ChangePassword();
+
                                     break;
 
                                 }
@@ -289,10 +312,16 @@ namespace EntregaProyecto2
                             
                             
                             }
-                         if (ma == 7)
+                         if (ma == 9)
                             {
-                                printAndReceive.PrintMenu7();
+                                break;
+
                             }
+                            LoadSong();
+                            LoadVideo();
+                            LoadUser();
+                            Console.WriteLine(cancion);
+                            break;
 
                         }
 
@@ -364,7 +393,21 @@ namespace EntregaProyecto2
                             {
                                 printAndReceive.PrintMenu5();
                             }
+
                             if (ma == 6)
+                            {
+                                AddSong1(cancion);
+                                break;
+
+
+                            }
+                            if (ma == 7)
+                            {
+                                AddVideo(video);
+                                break;
+                            }
+
+                            if (ma == 8)
                             {
                                 printAndReceive.PrintMenu6();
                                 int me;
@@ -387,7 +430,7 @@ namespace EntregaProyecto2
                                     break;
 
                                 }
-                                if (me == 7)
+                                if (me == 9)
                                 {
                                     break;
                                 }
@@ -411,7 +454,6 @@ namespace EntregaProyecto2
                 Console.Clear();
             }
         }
-
 
         // Metodo para mostrar las opciones posibles
         private static string ShowOptions(List<string> options)
@@ -515,8 +557,16 @@ namespace EntregaProyecto2
             stream.Close();
             return cancion;
         }
+        static public void ShowPeople(List<SongClass> cancion)
+        {
+            foreach (SongClass x in cancion)
+            {
+                Console.WriteLine(x);
+            }
+            Console.WriteLine(" ");
+        }
         //------------ IMPORTAR VIDEO ----------------------------------------
-        static public void AddVideo(List<Video> video)
+        static public void AddVideo( Video video)
         {
             Console.Write("Titulo del video: ");
             string title = Console.ReadLine();
@@ -538,7 +588,7 @@ namespace EntregaProyecto2
             string format = Console.ReadLine();
             //Duracion 5 memoria 100 por ahora
             //Arreglar despues.
-            video.Add(new Video(gender, año, title, 5, 100, study, keyword, description, mainActor, director, format));
+            video.AddVideo(new Video(gender, año, title, 5, 100, study, keyword, description, mainActor, director, format));
         }
 
         //Metodos para Serializar Videos

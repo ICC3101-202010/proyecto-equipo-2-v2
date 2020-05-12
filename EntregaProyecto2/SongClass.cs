@@ -52,6 +52,7 @@ namespace EntregaProyecto2
         public void AddSong(SongClass cancion)
         {
             canciones.Add(cancion);
+            
         }
 
     }
