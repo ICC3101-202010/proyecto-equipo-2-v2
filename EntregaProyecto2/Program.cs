@@ -52,6 +52,8 @@ namespace EntregaProyecto2
                     case "Registrarse":
                         Console.Clear();
                         server.Register();
+                        SaveUser(user)
+                        
 
                         if (user.Plan == "1")
                         {
@@ -94,8 +96,18 @@ namespace EntregaProyecto2
                             int ma;
                             ma = int.Parse(Console.ReadLine());
 
-                            if (ma == 1) { }
-                            if (ma == 2) { }
+                            if (ma == 1)
+                            {
+                                printAndReceive.PrintMenu1BP();
+                                
+                            }
+
+
+                            if (ma == 2)
+                            {
+                                printAndReceive.PrintMenu2BP();
+                            }
+
 
 
                             if (ma == 3)
@@ -142,6 +154,7 @@ namespace EntregaProyecto2
                             if (ma == 4)
                             {
                                 printAndReceive.PrintMenu7();
+                                break;
                             }
 
                         }
@@ -150,7 +163,31 @@ namespace EntregaProyecto2
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                         int x = 2;//hacer que esto sea dependiento de su plan
+
+
+
+
+
+
+
+
+
+
+
+
 
                         if (x == 2)//plan Premiun
                         {
@@ -248,11 +285,15 @@ namespace EntregaProyecto2
                                 if (me == 5)
                                 {
                                     printAndReceive.PrintMenu7();
-                                    break;
+                                    
                                 }
-
+                            
+                            
                             }
-                         
+                         if (ma == 7)
+                            {
+                                printAndReceive.PrintMenu7();
+                            }
 
                         }
 
@@ -397,7 +438,7 @@ namespace EntregaProyecto2
         //Metodo para guardar el usuario registrado.
         //Se tiene que hacer cada vez que se registra un usuario. 
         //Subir usuario.
-        static private void SaveUser(List<User> usuario)
+        static private void SaveUser(Dictionary<int,)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);

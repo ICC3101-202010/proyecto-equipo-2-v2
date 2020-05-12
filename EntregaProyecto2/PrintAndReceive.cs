@@ -31,6 +31,11 @@ namespace EntregaProyecto2
             Console.WriteLine("4)salir");
 
         }
+
+        public void PrintMenu1BP() { }
+        public void PrintMenu2BP() { }
+
+
         public void PrintMenu1()
         { }
         public void PrintMenu2()
