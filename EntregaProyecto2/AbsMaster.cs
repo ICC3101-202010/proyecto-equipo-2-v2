@@ -21,14 +21,14 @@ namespace EntregaProyecto2 ///////Probando antonia vez 1500
 
         }
 
-        protected string Gender { get => gender; set => gender = value; }
-        protected string PublicationYear { get => publicationYear; set => publicationYear = value; }
-        protected int NumReproduction { get => numReproduction; set => numReproduction = value; }
-        protected string Title { get => title; set => title = value; }
-        protected int Duration { get => duration; set => duration = value; }
-        protected int Memory { get => memory; set => memory = value; }
-        protected string Study { get => study; set => study = value; }
-        protected string Keyword { get => keyword; set => keyword = value; }
+        public string Gender { get => gender; set => gender = value; }
+        public string PublicationYear { get => publicationYear; set => publicationYear = value; }
+        public int NumReproduction { get => numReproduction; set => numReproduction = value; }
+        public string Title { get => title; set => title = value; }
+        public int Duration { get => duration; set => duration = value; }
+        public int Memory { get => memory; set => memory = value; }
+        public string Study { get => study; set => study = value; }
+        public string Keyword { get => keyword; set => keyword = value; }
 
         public bool addImage(string imagen)
         {

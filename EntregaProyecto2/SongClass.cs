@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace EntregaProyecto2
 {
     [Serializable]
@@ -9,6 +11,7 @@ namespace EntregaProyecto2
         private string album; //AGERGAR A SUS RESPECTIVAS CLASES
         private string lyrics;
         private string format;
+        private List<SongClass> canciones;
 
         public SongClass(string gender, string publicationYear,
                      string title, int duration, int memory, string study, string keyword,
@@ -34,6 +37,8 @@ namespace EntregaProyecto2
         {
 
         }
+
+        public List<SongClass> Canciones { get => canciones; set => canciones = value; }
         public string Format { get => format; set => format = value; }
         public string Composer { get => composer; set => composer = value; }
         public string Singer { get => singer; set => singer = value; }
@@ -43,6 +48,10 @@ namespace EntregaProyecto2
         public void AddDate()
         {
 
+        }
+        public void AddSong(SongClass cancion)
+        {
+            canciones.Add(cancion);
         }
 
     }

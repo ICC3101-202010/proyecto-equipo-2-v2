@@ -11,6 +11,7 @@ namespace EntregaProyecto2
         private string mainActor;//PONERLOS EN SUS CLASES
         private string director; //
         private string format;
+        private List<Video> videos;
 
         public Video(string gender, string publicationYear,
                      string title, int duration, int memory, string study, string keyword,
@@ -38,10 +39,15 @@ namespace EntregaProyecto2
         //public List<Actor> Actors { get => actors; set => actors = value; }
         public string Description { get => description; set => description = value; }
         public string MainActor { get => mainActor; set => mainActor = value; }
+        public List<Video> Videos1 { get => videos; set => videos = value; }
 
         public void AddData() //Cambiar UML  void
         {
 
+        }
+        public void AddVideo(Video video)
+        {
+            videos.Add(video);
         }
 
     }

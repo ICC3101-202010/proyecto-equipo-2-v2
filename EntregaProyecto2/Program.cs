@@ -427,7 +427,7 @@ namespace EntregaProyecto2
             Console.WriteLine(" ");
         }
         //------------ IMPORTAR CANCION ----------------------------------------------
-        static public void AddSong(List<SongClass> cancion)
+        static public void AddSong1(SongClass cancion)
         {
             Console.Write("Titulo de la cancion: ");
             string title = Console.ReadLine();
@@ -452,7 +452,8 @@ namespace EntregaProyecto2
             var rand = new Random();
             rand.Next(1, 50);
             // Arreglar despues. por aohra sera 5
-            cancion.Add(new SongClass(gender, publicationYear, title, 5, 100, study, keyword, composer, singer, album, lyrics, format));
+            cancion.AddSong(new SongClass(gender, publicationYear, title, 5, 100, study, keyword, composer, singer, album, lyrics, format));
+
 
         }
 
