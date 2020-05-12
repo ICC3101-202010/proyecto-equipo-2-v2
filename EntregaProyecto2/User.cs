@@ -14,6 +14,7 @@ namespace EntregaProyecto2
         private string nameUser;
         private string password;
         private string numPhone;
+        private List<User> usuarios;
 
         public User(string nameUser,string numPhone,string password, string name, int age, string lastname, string gender, string nationality, string occupation, string mail, string paymentInfo, string plan, DateTime registrationDate)
         {
@@ -49,6 +50,7 @@ namespace EntregaProyecto2
         public string NameUser { get => nameUser; set => nameUser = value; }
         public string Password { get => password; set => password = value; }
         public string NumPhone { get => numPhone; set => numPhone = value; }
+        public List<User> Usuarios { get => usuarios; set => usuarios = value; }
 
         public delegate void EmailVerifiEventHandler(object source, EventArgs args);
 
@@ -107,6 +109,7 @@ namespace EntregaProyecto2
         {
             return true;
         }
+
 
 
         //probando

@@ -14,8 +14,8 @@ namespace EntregaProyecto2
     {
         static void Main(string[] args)
         {
-
             
+
             // Creamos todos los objetos necesarios
             DataBase database = new DataBase();
             Server server = new Server(database);
@@ -33,9 +33,10 @@ namespace EntregaProyecto2
 
             List<SongClass> cancion = new List<SongClass>();
             List<Video> video = new List<Video>();
-            List<User> usuarios = new List<User>();
+            List<User> usuarios = new List<User>(); //Serializacion
+            usuarios = server.UsersList;
             usuarios.Add(user2); //Sirve para empezar el programa con un usuario
-            usuarios = server.UsersList;  //Serializar EsTOOOOOOO
+            //Serializar EsTOOOOOOO
             SaveUser(usuarios);
             usuarios = LoadUser();
             //Suscribir los que escuchan los eventos
@@ -61,7 +62,8 @@ namespace EntregaProyecto2
                 {
                     case "Registrarse":
                         Console.Clear();
-                        server.Register();
+                        //server.Register();
+                        SaveUser(server.UsersList);
                         break;
 
                     case "LogIn":
@@ -74,6 +76,7 @@ namespace EntregaProyecto2
                         Console.Clear();
                         foreach (User u in usuarios)
                         {
+                            Console.WriteLine("HOLA");
                             if (u.NameUser == usr && u.Password == pswd)
                             {
                                 user1 = u;
@@ -360,29 +363,24 @@ namespace EntregaProyecto2
 
                                     }
 
-
                                 }
 
 
+                                break;
 
 
-                                
                             }
-
                             else
                             {
                                 Console.WriteLine("Usuario no encontrado");
                                 break;
 
                             }
-                            
+
+
                         }
-
                         break;
-
-
-
-
+                        
 
                     case "Salir":
                         exec = false;
