@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.IO;
+
 namespace EntregaProyecto2
 {
     [Serializable] // Necesario para poder importar canciones y videos. Necesito guardar usuarios.
@@ -83,6 +85,33 @@ namespace EntregaProyecto2
         }
         public bool DeleteFollowed()
         {
+            return true;
+        }
+
+        public bool Download(string gender, string publicationYear,
+                     string title, int duration, int memory, string study, string keyword,
+                     string composer, string singer, string album, string lyrics, string format)
+        {
+            string fileName = title + ".txt";
+            FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+
+            writer.WriteLine(title);
+            writer.WriteLine(singer);
+            writer.WriteLine(album);
+            writer.WriteLine(gender);
+            writer.WriteLine(composer);
+            writer.WriteLine(publicationYear);
+            writer.WriteLine(duration);
+            writer.WriteLine(memory);
+            writer.WriteLine(study);
+            writer.WriteLine(keyword);
+            writer.WriteLine(lyrics);
+            writer.WriteLine(format);
+
+            Console.WriteLine("Cancion descargada con exito");
+
+            writer.Close();
             return true;
         }
 

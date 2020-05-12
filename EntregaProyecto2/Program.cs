@@ -261,11 +261,12 @@ namespace EntregaProyecto2
                                                 Console.WriteLine("1)Importar cancion"); //Listo
                                                 Console.WriteLine("2)Importar video");// Listo
                                                 Console.WriteLine("3)Ver informacion cancion: "); //Falta ver info de video
-                                                Console.WriteLine("4)Buscar");
-                                                Console.WriteLine("5)Agregar imagenes");
-                                                Console.WriteLine("6)Crear playlist de canciones: ");
-                                                Console.WriteLine("7)Crear playlist de videos: ");
-                                                Console.WriteLine("8)Descargar canciones");
+                                                Console.WriteLine("4)Buscar canciones");
+                                                Console.WriteLine("5)Buscar videos");
+                                                Console.WriteLine("6)Agregar imagenes");
+                                                Console.WriteLine("7)Crear playlist de canciones: ");
+                                                Console.WriteLine("8)Crear playlist de videos: ");
+                         
                                                 Console.WriteLine("9)salir");
                                                 Console.WriteLine("Seleccione un numero del menu: ");
                                                 string rt = Console.ReadLine();
@@ -307,6 +308,11 @@ namespace EntregaProyecto2
                                                 }
                                                 else if (menuPerfil == 5)
                                                 {
+                                                    
+                                                }
+                                                else if (menuPerfil == 6)
+                                                {
+
                                                     if (user1.Plan == "premium" || user1.Plan == "familiar")
                                                     {
                                                         //aca va el desarollo de importar funcion
@@ -315,10 +321,6 @@ namespace EntregaProyecto2
                                                     {
                                                         Console.WriteLine("No puede acceder a esta funcion con plan basico");
                                                     }
-                                                }
-                                                else if (menuPerfil == 6)
-                                                {
-                                                    //accesible para basico, hacer aca el desarrollo de la funcion
                                                 }
                                                 else if (menuPerfil == 7)
                                                 {
@@ -326,14 +328,7 @@ namespace EntregaProyecto2
                                                 }
                                                 else if (menuPerfil == 8)
                                                 {
-                                                    if (user1.Plan == "premium" || user1.Plan == "familiar")
-                                                    {
-                                                        //aca va el desarollo de importar funcion
-                                                    }
-                                                    else
-                                                    {
-                                                        Console.WriteLine("No puede acceder a esta funcion con plan basico");
-                                                    }
+                                                    
 
                                                 }
                                                 else if (menuPerfil == 9)
