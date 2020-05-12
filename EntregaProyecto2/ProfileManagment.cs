@@ -6,17 +6,76 @@ namespace EntregaProyecto2
 
     public class ProfileManagment
     {
-        private List<ProfilelUser> profiles;
+        private List<Profile> profiles;
 
         public ProfileManagment()
         {
 
         }
 
-        public List<ProfilelUser> Profiles { get => profiles; set => profiles = value; }
+        public List<Profile> Profiles { get => profiles; set => profiles = value; }
 
         public bool DeleteProfile()
         {
+            Console.WriteLine("Lista de perfiles: ");
+            int x = 0;
+            foreach (Profile c in profiles)
+            {
+                Console.WriteLine(x + ")\nNombre: " + c.NameProfile);
+            }
+            while (true)
+            {
+                if (profiles.Count == 0)
+                {
+                    Console.WriteLine("No hay perfiles para eliminar");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Seleccione el numero del perfil que desea eliminar: ");
+                    string l = Console.ReadLine();
+                    int numperfil = Int32.Parse(l) - 1;
+                    if (numperfil > profiles.Count || numperfil ==0)
+                    {
+                        Console.WriteLine("El numero no es valido, vuelva a ingresarlo");
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("El perfil a eliminar es: "+profiles[numperfil].NameProfile);
+                        Console.WriteLine("Esta seguro de eliminar? \n1)si\n2)no\nopcion: ");
+                        string vv = Console.ReadLine();
+                        int seguro= Int32.Parse(vv);
+
+                        while (true)
+                        {
+                            if (seguro == 1)
+                            {
+                                Console.WriteLine("Eliminando...");
+                                Thread.Sleep(2000);
+                                profiles.Remove(profiles[numperfil]);
+                                Console.WriteLine("Perfil eliminado");
+                                return true;
+                            }
+                            else if (seguro == 2)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Opcion no valida, por favor escribala denuevo");
+                            }
+                        }
+
+                        break;
+                    }
+                }
+                
+            }
+
+
+
+
             return true;
         }
         public bool ChangeProfile()
@@ -52,10 +111,14 @@ namespace EntregaProyecto2
             }
             string[] categorias = { "pop", "romantica", "rock", "metal", "clasica", "country", "latino", "reggae", "disco", "hip-hop", "indie", "chill", "folk", "arabe", "infantil", "cristiana", "soul", "jazz", "punk", "funk", "k-pop" };
             Console.WriteLine("III) Ingrese el nuemro de sus 5 generos de musica favoritos: ");
-            Console.WriteLine("1)Pop \n2)Romantica \n3)Rock \n4)Metal \n5)Clasica \n 6)Country \n7)Latino \n8)Reggae \n9)Disco \n10)Hip-Hop \n11)Indie");
-            Console.WriteLine("12)Chill \n13)Folk \n14)Arabe \n15)Infantil \n16)Cristiana \n 17)Soul \n18)Jazz \n19)Punk \n20)Funk \n21)K-pop");
-            List<string> gustosMusica = new List<string>();
+            int k = 0;
 
+            foreach(string a in categorias)
+            {
+                Console.WriteLine(k+") "+a);
+                k++;
+            }
+            List<string> gustosMusica = new List<string>();
             int i = 0;
             while (i < 5)
             {
@@ -74,19 +137,68 @@ namespace EntregaProyecto2
 
             }
 
-            string[] categoriaspelis = { "terror", "ciencia-ficcion", "romantica", "comedia", "drama", "infantil", "suspenso", "musicales", "accion", "aventuras", "indie", "chill", "folk", "arabe", "infantil", "cristiana", "soul", "jazz", "punk", "funk", "k-pop" };
+            string[] categoriaspelis = { "terror", "ciencia-ficcion", "romantica", "comedia", "drama", "belicas", "anime", "", "psicologicas", "crimen", "fantasia", "clasicos", "policiacas", "documentales", "historicas", "biograficas", "catastrofes", "eroticas", "independientes", "mockbuster","religiosas","thriller" };
             Console.WriteLine("IV) Ingrese el numero de sus 5 categorias de pelicula favoritos: ");
-            Console.WriteLine("1)Pop \n2)Romantica \n3)Rock \n4)Metal \n5)Clasica \n 6)Country \n7)Latino \n8)Reggae \n9)Disco \n10)Hip-Hop \n11)Indie");
+            int j = 0;
+
+            foreach (string b in categoriaspelis)
+            {
+                Console.WriteLine(j + ") " + b);
+                j++;
+            }
+
             List<string> gustosPeliculas = new List<string>();
+            int h = 0;
+            while (h < 5)
+            {
+                string n = Console.ReadLine();
+                int seleccionpelis = Int32.Parse(n) - 1;
+                if (seleccionpelis < 22 && seleccionpelis > 0)
+                {
+                    gustosPeliculas.Add(categoriaspelis[seleccionpelis]);
+                    Console.WriteLine("Gusto añadido: " + categoriaspelis[seleccionpelis]);
+                    h++;
+                }
+                else
+                {
+                    Console.WriteLine("Numero invalido, vuelva a ingresarlo");
+                }
 
+            }
 
+            Profile profile = new Profile(nombre,tipoperfil,gustosMusica,gustosPeliculas);
+            profiles.Add(profile);
+            Console.WriteLine("Agregando perfil...");
 
-
-            //Profile profile = new Profile();
+            Thread.Sleep(2000);
+            Console.WriteLine("Perfil agregado");
             return true;
         }
+
         public bool SeeProfile()
         {
+            int y = 0;
+            foreach (Profile c in profiles)
+            {
+                Console.WriteLine(y+")\nNombre: "+c.NameProfile);
+                Console.WriteLine("Tipo perfil: "+c.ProfileType);
+                Console.WriteLine("Gustos musicales: ");
+                int m = 0;
+                foreach (string a in c.PleasuresMusic)
+                {
+                    Console.WriteLine(m+") "+a);
+                    m++;
+                }
+                y++;
+                Console.WriteLine("Gustos peliculas: ");
+                int t = 0;
+                foreach (string g in c.PleasuresMovies)
+                {
+                    Console.WriteLine(t + ") " + g);
+                    t++;
+                }
+                y++;
+            }
             return true;
         }
 
