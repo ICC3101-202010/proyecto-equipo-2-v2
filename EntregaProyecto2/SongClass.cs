@@ -37,6 +37,10 @@ namespace EntregaProyecto2
         {
 
         }
+        public SongClass(string cancion)
+        {
+            canciones = new List<SongClass>();
+        }
 
         public List<SongClass> Canciones { get => canciones; set => canciones = value; }
         public string Format { get => format; set => format = value; }

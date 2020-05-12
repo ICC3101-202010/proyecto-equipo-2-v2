@@ -260,6 +260,7 @@ namespace EntregaProyecto2
                             if (ma == 6)
                             {
                                 AddSong1(cancion);
+                                Console.WriteLine(cancion);
                                 break;
 
 
