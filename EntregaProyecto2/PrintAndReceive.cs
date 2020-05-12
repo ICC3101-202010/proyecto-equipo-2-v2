@@ -55,17 +55,17 @@ namespace EntregaProyecto2
         public void PrintMenu4()
         {
 
-            Console.WriteLine("1)Busqueda por compositor)");
-            Console.WriteLine("2)Busqueda por integrante)");
-            Console.WriteLine("3)Busqueda por evaluacion");
-            Console.WriteLine("4)Busqueda por palabra clave");
+            Console.WriteLine("1)Busqueda por compositor"); //Listo
+            Console.WriteLine("2)Busqueda por integrante");
+            Console.WriteLine("3)Busqueda por cantante"); //Listo
+            Console.WriteLine("4)Busqueda por palabra clave"); //Listo
         }
         public void PrintMenu5()
         {
-            Console.WriteLine("1)Busqueda por actores)");
-            Console.WriteLine("2)Busqueda por caracteristica)");
+            Console.WriteLine("1)Busqueda por director"); //Listo
+            Console.WriteLine("2)Busqueda por caracteristica");
             Console.WriteLine("3)Busqueda por evaluacion");
-            Console.WriteLine("4)Busqueda por palabra clave");
+            Console.WriteLine("4)Busqueda por palabra clave"); //Listo
         }
         public void PrintMenu6()//ajustes solo para plan familiar
         {
