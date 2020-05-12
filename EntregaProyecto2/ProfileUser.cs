@@ -88,32 +88,31 @@ namespace EntregaProyecto2
             return true;
         }
 
-        public bool Download(string gender, string publicationYear,
-                     string title, int duration, int memory, string study, string keyword,
-                     string composer, string singer, string album, string lyrics, string format)
+        public bool Download(SongClass song)
         {
-            string fileName = title + ".txt";
+            string fileName = song.Title + ".txt";
             FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter writer = new StreamWriter(stream);
 
-            writer.WriteLine(title);
-            writer.WriteLine(singer);
-            writer.WriteLine(album);
-            writer.WriteLine(gender);
-            writer.WriteLine(composer);
-            writer.WriteLine(publicationYear);
-            writer.WriteLine(duration);
-            writer.WriteLine(memory);
-            writer.WriteLine(study);
-            writer.WriteLine(keyword);
-            writer.WriteLine(lyrics);
-            writer.WriteLine(format);
+            writer.WriteLine(song.Title);
+            writer.WriteLine(song.Singer);
+            writer.WriteLine(song.Album);
+            writer.WriteLine(song.Gender);
+            writer.WriteLine(song.Composer);
+            writer.WriteLine(song.PublicationYear);
+            writer.WriteLine(song.Duration);
+            writer.WriteLine(song.Memory);
+            writer.WriteLine(song.Study);
+            writer.WriteLine(song.Keyword);
+            writer.WriteLine(song.Lyrics);
+            writer.WriteLine(song.Format);
 
             Console.WriteLine("Cancion descargada con exito");
+            downloadsSongs.Add(song);
 
             writer.Close();
             return true;
-        }
+        } 
 
 
     }
