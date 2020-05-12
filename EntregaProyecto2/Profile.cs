@@ -17,6 +17,10 @@ namespace EntregaProyecto2
             this.PleasuresMusic = pleasuresMusic;
             this.PleasuresMovies = pleasuresMovies;
         }
+        public Profile()
+        {
+
+        }
 
         public string NameProfile { get => nameProfile; set => nameProfile = value; }
         public string ProfileType { get => profileType; set => profileType = value; }

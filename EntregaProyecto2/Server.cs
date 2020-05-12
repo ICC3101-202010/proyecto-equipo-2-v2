@@ -5,9 +5,12 @@ namespace EntregaProyecto2
 {
     public class Server
     {
+        private List<User> usersList = new List<User>();
+        public List<User> UsersList { get => usersList; set => usersList = value; }
 
         public delegate void RegisterEventHandler(object source, RegisterEventArgs args);
         public event RegisterEventHandler Registered;
+
         protected virtual void OnRegistered(string username, string password, string verificationlink, string email, string plan, string infopago)
         {
             if (Registered != null)
@@ -31,7 +34,7 @@ namespace EntregaProyecto2
 
         public DataBase Data { get; }
         public int OnEmailVerified { get; internal set; }
-
+        
 
         public Server(DataBase data)
         {
@@ -168,21 +171,19 @@ namespace EntregaProyecto2
 
 
 
-        public void InicioSecion()
+        public bool InicioSecion(string usr,string pswd)
         {
-            Console.WriteLine("Ingresa tu nombre de usuario: ");
-            string usr = Console.ReadLine();
-            Console.WriteLine("Ingresa tu contrasena: ");
-            string pswd = Console.ReadLine();
-
+           
             string result = Data.LogIn(usr, pswd);
             if (result == null)
             {
-                Console.WriteLine("inicio secion exitoso");
+                Console.WriteLine("inicio sesion exitoso");
+                return true;
             }
             else
             {
                 Console.WriteLine("[!] ERROR: " + result + "\n");
+                return false;
             }
             
         }
@@ -192,37 +193,87 @@ namespace EntregaProyecto2
 
             Console.Write("Bienvenido! Ingrese sus datos de registro \nUsuario: ");
             string usr = Console.ReadLine();
+
+
             Console.Write("Correo: ");
             string email = Console.ReadLine();
+
             Console.Write("Contraseña: ");
             string psswd = Console.ReadLine();
+
             Console.Write("Numero de telefono: ");
             string number = Console.ReadLine();
 
+            Console.Write("Nombre: ");
+            string name = Console.ReadLine();
 
-            string verificationLink = GenerateLink(usr);
+            Console.Write("Apellido: ");
+            string lastname = Console.ReadLine();
 
-            Console.WriteLine("ingrese tipo de plan\n");
-            Console.WriteLine("1)plan Basico \n");
-            Console.WriteLine("2)plan premiun (personal) $3,990\n");
-            Console.WriteLine("3)plan familiar (4 usuarios) $7,990\n");
-            string op = Console.ReadLine();
-            int plan = Int32.Parse(op);
+            Console.Write("Edad: ");
+            string e = Console.ReadLine();
+            int edad= Int32.Parse(e);
 
+            Console.Write("Genero: ");
+            string gender = Console.ReadLine();
 
+            Console.Write("Nacionalidad: ");
+            string nationality= Console.ReadLine();
+
+            Console.Write("Ocupacion: ");
+            string ocuppation = Console.ReadLine();
 
             Console.WriteLine("ingrese su numero de tarjeta"); // hafe
             string infopago = Console.ReadLine();
 
+            string planSeleccionado;
 
+            while (true)
+            {
+                Console.WriteLine("Planes: \n");
+                Console.WriteLine("1)plan Basico \n");
+                Console.WriteLine("2)plan premiun (personal) $3,990\n");
+                Console.WriteLine("3)plan familiar (4 usuarios) $7,990\n");
+                Console.WriteLine("Ingrese el numero de plan que desea: ");
+                string op = Console.ReadLine();
+                int plan = Int32.Parse(op);
+                
 
+                if (plan == 1)
+                {
+                    Console.WriteLine("Plan basico seleccionado, no se realizaran cargos en su tarjeta ");
+                    planSeleccionado = "basico";
+                    break;
+                }
+                else if (plan == 2)
+                {
+                    Console.WriteLine("Plan premium seleccionado, se realizara un cargo de $3,990 en su tarjeta ");
+                    planSeleccionado = "premium";
+                    break;
+                }
+                else if (plan == 3)
+                {
+                    Console.WriteLine("Plan familiar seleccionado, se realizara un cargo de $7,990 en su tarjeta ");
+                    planSeleccionado = "familiar";
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("numero invalido, ingreselo nuevamente");
+                }
 
+                
+            }
+            DateTime dateRegister = new DateTime();
+
+            string verificationLink = GenerateLink(usr);
             string result = Data.AddUser(new List<string>()
                 {usr, email, psswd, verificationLink, Convert.ToString(DateTime.Now), number});
+
             if (result == null)
             {
 
-                OnRegistered(usr, psswd, verificationlink: verificationLink, email: email, plan: op, infopago: infopago);
+                OnRegistered(usr, psswd, verificationlink: verificationLink, email: email, plan: planSeleccionado, infopago: infopago);
 
 
             }
@@ -231,7 +282,12 @@ namespace EntregaProyecto2
 
                 Console.WriteLine("[!] ERROR: " + result + "\n");
             }
+            //Agregar el usario a una lista de usuarios
+            User usuario = new User(usr,number,psswd,name,edad,lastname,gender,nationality,ocuppation,email,infopago,planSeleccionado,dateRegister);
+            UsersList.Add(usuario);
+
         }
+
 
 
         private string GenerateLink(string usr)
@@ -245,6 +301,7 @@ namespace EntregaProyecto2
             }
             return "http://spotflix.com/verificar-correo.php?=" + usr + "_" + result;
         }
+
         public void OnemailVerified(object source, EventArgs args)
         {
             Console.WriteLine("Verificacion exitosa!");

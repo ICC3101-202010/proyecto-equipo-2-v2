@@ -18,9 +18,8 @@ namespace EntregaProyecto2
         private List<SongClass> downloadsSongs;
         private List<SongClass> likesSongs;
         private List<Video> likesVideos;
-        private string profileType;
 
-        public ProfilelUser(List<ProfilelUser> followers, List<PlaylistVideoEmptyClass> followedPlaylistVideo, List<PlaylistSpotifai> followedPlaylistSongs, List<ProfilelUser> followedProfile, List<Singer> followedSingers, List<Actor> followedActors, List<Director> followedDirectors, List<Album> followedDisk, List<SongClass> downloadsSongs, List<SongClass> likesSongs, List<Video> likesVideos, string profileType)
+        public ProfilelUser(List<ProfilelUser> followers, List<PlaylistVideoEmptyClass> followedPlaylistVideo, List<PlaylistSpotifai> followedPlaylistSongs, List<ProfilelUser> followedProfile, List<Singer> followedSingers, List<Actor> followedActors, List<Director> followedDirectors, List<Album> followedDisk, List<SongClass> downloadsSongs, List<SongClass> likesSongs, List<Video> likesVideos)
         {
             this.Followers = followers;
             this.FollowedPlaylistVideo = followedPlaylistVideo;
@@ -33,7 +32,7 @@ namespace EntregaProyecto2
             this.DownloadsSongs = downloadsSongs;
             this.LikesSongs = likesSongs;
             this.LikesVideos = likesVideos;
-            this.ProfileType = profileType;
+            
         }
 
         public List<ProfilelUser> Followers { get => followers; set => followers = value; }
@@ -48,7 +47,7 @@ namespace EntregaProyecto2
         public List<Video> LikesVideos { get => likesVideos; set => likesVideos = value; }
 
         public List<ProfilelUser> FollowedProfile { get => followedProfile; set => followedProfile = value; }
-        public string ProfileType { get => profileType; set => profileType = value; }
+        
 
         public bool CreatePlaylistSong()
         {

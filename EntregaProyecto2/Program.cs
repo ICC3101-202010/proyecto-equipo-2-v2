@@ -15,20 +15,18 @@ namespace EntregaProyecto2
         static void Main(string[] args)
         {
 
+            
             // Creamos todos los objetos necesarios
             DataBase database = new DataBase();
             Server server = new Server(database);
             MailSender mailSender = new MailSender();
             SMSSender smsSender = new SMSSender();
-
-            User user = new User();  //creamos el objeto de la nueva clase
+            User user = new User();  
             PrintAndReceive printAndReceive = new PrintAndReceive();
-
             SongClass cancion = new SongClass();
             Video video = new Video();
-
-
-
+            ProfileManagment profileManagment = new ProfileManagment();
+            IDictionary<User, List<Profile>> diccUserProfiles = new Dictionary<User, List<Profile>>();
 
             //Suscribir los que escuchan los eventos
 
@@ -54,397 +52,328 @@ namespace EntregaProyecto2
                     case "Registrarse":
                         Console.Clear();
                         server.Register();
-                        
-                        
-
-                        if (user.Plan == "1")
-                        {
-                            user.AddProfile();              // datos del usuario 
-
-
-                        }//Perfil agregado
-
-                        if (user.Plan == "2")
-
-                        {
-                            user.AddProfile();
-
-
-
-                        }
-
-
-                        if (user.Plan == "3")
-                        {
-                            user.AddProfiles();
-                        }
-
-
-
                         break;
-
-
 
                     case "LogIn":
+                        Console.WriteLine("Ingresa tu nombre de usuario: ");
+                        string usr = Console.ReadLine();
+                        Console.WriteLine("Ingresa tu contraseña: ");
+                        string pswd = Console.ReadLine();
+                        User user1= new User();
+
                         Console.Clear();
-                        server.InicioSecion();
-                     
-
-
-
-
-
-                        if (user.Plan == "1") // ESTO SE TIENE QUE ARREGLAR
+                        if (server.InicioSecion(usr, pswd)==true)
                         {
-                            printAndReceive.MenuBasicPlan();
-                            int ma;
-                            ma = int.Parse(Console.ReadLine());
-
-                            if (ma == 1)
+                            foreach (User cc in server.UsersList)
                             {
-                                printAndReceive.PrintMenu1BP();
+                                if (cc.NameUser == usr)
+                                {
+                                    user1 = cc;
+                                    break;
+                                }
                                 
                             }
-
-
-                            if (ma == 2)
-                            {
-                                printAndReceive.PrintMenu2BP();
-                            }
-
-
-
-                            if (ma == 3)
-                            {
-                                printAndReceive.PrintMenu61();
-                                int me;
-
-                                me = int.Parse(Console.ReadLine());
-                                if (me == 1)
+                            //Menu usuario
+                            
+                                
+                                while (true)
                                 {
+                                    Console.WriteLine("BIENVENIDO A SPOTFLIX");
+                                    Console.WriteLine("1) Admistracion perfiles");
+                                    Console.WriteLine("2) Entrar a un perfil");
+                                    Console.WriteLine("3) Administrar usuario");
+                                    Console.WriteLine("4) Salir");
+                                    Console.WriteLine("escoja una numero de opcion: ");
+                                    string es = Console.ReadLine();
+                                    int escoger = Int32.Parse(es);
+                                    if (escoger == 1)
+                                    {
+                                        
+                                            
+                                            while (true)
+                                            {
+                                                Console.WriteLine("Menu administracion de perfiles \n1)Agregar Perfil \n2)Ver perfiles \n3)Cambiar Perfil \n4)Eliminar perfil \n5)Salir");
+                                                Console.WriteLine("ingrese el numero de la opcion que desea realizar: ");
+                                                string ooo = Console.ReadLine();
+                                                int opop = Int32.Parse(ooo);
+                                                if (opop == 1)
+                                                {
+                                                    if(user1.Plan=="familiar")
+                                                    {
+                                                        Console.WriteLine("Agregar perfil\n");
+                                                        if (diccUserProfiles.ContainsKey(user1) == true)
+                                                        {
+                                                            if (diccUserProfiles[user1].Count<= 5)
+                                                            {
+                                                                profileManagment.AddProfile();
+                                                                if (diccUserProfiles.ContainsKey(user1) == true)
+                                                                {
+                                                                    diccUserProfiles.Remove(user1);
+                                                                    diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Ya alcanzo su limite de perfiles");
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                             profileManagment.AddProfile();
+                                                             diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                        }
+                                                    }
+                                                    if(user1.Plan=="premium")
+                                                    {
+                                                        Console.WriteLine("Agregar perfil\n");
+                                                        if (diccUserProfiles.ContainsKey(user1) == true)
+                                                        {
+                                                            if (diccUserProfiles[user1].Count== 0)
+                                                            {
+                                                                profileManagment.AddProfile();
+                                                                if (diccUserProfiles.ContainsKey(user1) == true)
+                                                                {
+                                                                    diccUserProfiles.Remove(user1);
+                                                                    diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Ya alcanzo su limite de perfiles");
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                             profileManagment.AddProfile();
+                                                             diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                        }
+                                                    }
+                                                }
+                                                else if (opop == 2)
+                                                {
+                                                    Console.WriteLine("Ver perfiles\n");
+                                                    profileManagment.SeeProfile();
+                                                    
+                                                }
+                                                else if (opop == 3)
+                                                {
+                                                    Console.WriteLine("Cambiar Perfil\n");
+                                                    profileManagment.ChangeProfile();
+                                                    if (diccUserProfiles.ContainsKey(user1) == true)
+                                                    {
+                                                        diccUserProfiles.Remove(user1);
+                                                        diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                    }
+                                                    else
+                                                    {
+                                                        diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                    }
 
+                                                    
 
-                                    server.ChangePlan();
-                                    //aca si hay que veer si es familiar ,basico o premiu  para volver a crear perfiles
-                                }
-                                if (me == 2)
-                                {
-                                    server.ChangeTargetPay();
-                                    break;
-                                }
-                                if (me == 3)
-                                {
-                                    server.ChangePassword();
+                                                }
+                                                else if (opop == 4)
+                                                {
+                                                    Console.WriteLine("Eliminar Perfil\n");
+                                                    if (profileManagment.DeleteProfile() == true)
+                                                    {
+                                                        if (diccUserProfiles.ContainsKey(user1) == true)
+                                                        {
+                                                            diccUserProfiles.Remove(user1);
+                                                            diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                        }
+                                                        else
+                                                        {
+                                                            diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                                else if (opop == 5)
+                                                {
 
-                                    break;
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Opcion no valida vuelva a ingresarla");
+                                                }
 
-                                }
-                                if (me == 4)
-                                {
-                                    server.ChangeEmail();
-                                    break;
+                                            }
 
-                                }
-                                if (me == 5)
-                                {
-                                    printAndReceive.PrintMenu7();
-                                    break;
-                                }
-
-                            }
-
-
-
-                            if (ma == 4)
-                            {
-                                printAndReceive.PrintMenu7();
-                                break;
-                            }
-
-                        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        int x = 2;//hacer que esto sea dependiento de su plan
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        if (x == 2)//plan Premiun
-                        {
-                            printAndReceive.PrintMenuPrincipal();
-                            int ma;
-
-                            ma = int.Parse(Console.ReadLine());
-
-
-
-                            if (ma == 1)
-                            {
-                                printAndReceive.PrintMenu1();
-                            }
-                            if (ma == 2)
-                            {
-                                printAndReceive.PrintMenu2();
-                                int me;
-                                me = int.Parse(Console.ReadLine());
-
-                                if (me == 1)
-                                {
-                                    //agregar metodo mostrar playlist
-                                }
-                                if (me == 2)
-                                {
-                                    //agregar metodo Crear Playlis
-                                }
-                                if (me == 3)
-                                {
-                                    //agregar metodo Eliminar playlist
-                                }
-                            }
-                            if (ma == 3)
-                            {
-                                printAndReceive.PrintMenu3();
-
-                                int me;
-                                me = int.Parse(Console.ReadLine());
-
-                                if (me == 1)
-                                {
-                                    //agregar metodo mostrar playlist
-                                }
-                                if (me == 2)
-                                {
-                                    //agregar metodo Crear Playlis
-                                }
-                                if (me == 3)
-                                {
-                                    //agregar metodo Eliminar playlist
-                                }
-                            }
-
-                            //completar dependiento de metodos
-                            if (ma == 4)
-                            {
-                                printAndReceive.PrintMenu4();
-                            }
-                            if (ma == 5)
-                            {
-                                printAndReceive.PrintMenu5();
-                            }
-
-
-                            if (ma == 6)
-                            {
-                                AddSong1(cancion);
-                                Console.WriteLine(cancion);
-                                break;
-
-
-                            }
-                            if (ma == 7)
-                            {
-                                AddVideo(video);
-                                break;
-                            }
-
-
-
-
-                            if (ma == 8)
-                            {
-                                printAndReceive.PrintMenu61();
-                                int me;
-
-                                me = int.Parse(Console.ReadLine());
-                                if (me == 1)
-                                {
-
-
-                                    server.ChangePlan();
-                                    //aca si hay que veer si es familiar ,basico o premiu  para volver a crear perfiles
-                                }
-                                if (me == 2)
-                                {
-                                    server.ChangeTargetPay();
-                                    break;
-                                }
-                                if (me == 3)
-                                {
-                                    server.ChangePassword();
-
-                                    break;
-
-                                }
-                                if (me == 4)
-                                {
-                                    server.ChangeEmail();
-                                    break;
-
-                                }
-                                if (me == 5)
-                                {
-                                    printAndReceive.PrintMenu7();
+                                            
+                                        
+                                        
+                                    }
                                     
+
+                                    else if (escoger == 2)
+                                    {
+
+                                        List < Profile > listaperfiles = new List<Profile>();
+                                        Profile perfilLog = new Profile();
+
+                                        Console.WriteLine("Ingrese a su perfil");
+                                        int hh = 1;
+                                        foreach (KeyValuePair<User, List<Profile>> item in diccUserProfiles)
+                                        {
+                                            if (item.Key==user1)
+                                            {
+                                                listaperfiles = item.Value;
+                                                break;
+                                            }
+                                        }
+                                        if (listaperfiles.Count > 0)
+                                        {
+                                            foreach (Profile v in listaperfiles)
+                                            {
+                                                Console.WriteLine(hh + ") " + v.NameProfile);
+                                                hh++;
+                                            }
+                                            while (true)
+                                            {
+                                                Console.WriteLine("Seleccione el numero de su perfil: ");
+                                                string gh = Console.ReadLine();
+                                                int numPerfil = Int32.Parse(gh);
+                                                if (numPerfil <= listaperfiles.Count && numPerfil != 0)
+                                                {
+                                                    perfilLog=listaperfiles[numPerfil - 1];
+                                                    Console.WriteLine("El perfil escogido es: "+perfilLog.NameProfile);
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("numero incorrecto, vuelva a ingresarlo");
+                                                }
+                                            }
+                                            //Menu perfiles
+                                            
+
+                                            while (true)
+                                            {
+                                                Console.WriteLine("Bienvenido " + perfilLog.NameProfile);
+                                                Console.WriteLine("1)Importar cancion");
+                                                Console.WriteLine("2)Importar video");//
+                                                Console.WriteLine("3)Ver informacion cancion: ");
+                                                Console.WriteLine("4)Buscar");
+                                                Console.WriteLine("5)Agregar imagenes");
+                                                Console.WriteLine("6)Crear playlist de canciones: ");
+                                                Console.WriteLine("7)Crear playlist de videos: ");
+                                                Console.WriteLine("8)Descargar canciones");
+                                                Console.WriteLine("9)salir");
+                                                Console.WriteLine("Seleccione un numero del menu: ");
+                                                string rt = Console.ReadLine();
+                                                int menuPerfil = Int32.Parse(rt);
+
+                                                if (menuPerfil == 1)
+                                                {
+                                                    if (user1.Plan=="premium" || user1.Plan=="familiar")
+                                                    {
+                                                        //aca va el desarollo de importar funcion
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("No puede acceder a esta funcion con plan basico");
+                                                    }
+                                                }
+                                                else if (menuPerfil == 2)
+                                                {
+                                                    if (user1.Plan == "premium" || user1.Plan == "familiar")
+                                                    {
+                                                        //aca va el desarollo de importar funcion
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("No puede acceder a esta funcion con plan basico");
+                                                    }
+
+                                                }
+                                                else if (menuPerfil == 3)
+                                                {
+                                                    //accesible para basico, hacer aca el desarrollo de la funcion
+                                                }
+                                                else if (menuPerfil == 4)
+                                                {
+                                                    //accesible para basico, hacer aca el desarrollo de la funcion
+                                                }
+                                                else if (menuPerfil == 5)
+                                                {
+                                                    if (user1.Plan == "premium" || user1.Plan == "familiar")
+                                                    {
+                                                        //aca va el desarollo de importar funcion
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("No puede acceder a esta funcion con plan basico");
+                                                    }
+                                                }
+                                                else if (menuPerfil == 6)
+                                                {
+                                                    //accesible para basico, hacer aca el desarrollo de la funcion
+                                                }
+                                                else if (menuPerfil == 7)
+                                                {
+                                                    //accesible para basico, hacer aca el desarrollo de la funcion
+                                                }
+                                                else if (menuPerfil == 8)
+                                                {
+                                                    if (user1.Plan == "premium" || user1.Plan == "familiar")
+                                                    {
+                                                        //aca va el desarollo de importar funcion
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("No puede acceder a esta funcion con plan basico");
+                                                    }
+
+                                                }
+                                                else if (menuPerfil == 9)
+                                                {
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("El numero no es valido, vuelva a ingresarlo");
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("No hay perfiles para realizar esta operacion");
+                                            
+                                        }
+                                        
+                                       
+                                    }
+                                    else if (escoger == 3)
+                                    {
+                                        //YO AGREGO ESTO, ANTO
+                                    }
+                                    else if (escoger == 4)
+                                    {
+                                        break;
+                                        
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Numero invalido, ingreselo nuevamente");
+
+                                    }
+
+                                
                                 }
-                            
-                            
-                            }
-                         if (ma == 9)
-                            {
-                                break;
 
-                            }
-                            LoadSong();
-                            LoadVideo();
-                            LoadUser();
-                            Console.WriteLine(cancion);
-                            break;
+                                
 
+                           
                         }
-
-
-
-
-
-
-                        if (x == 3)//plan familiar
+                        else
                         {
-                            //escoger usuario 1,2,3 o 4
-                            printAndReceive.PrintMenuPrincipal();
-                            int ma;
-
-                            ma = int.Parse(Console.ReadLine());
-
-
-
-                            if (ma == 1)
-                            {
-                                printAndReceive.PrintMenu1();
-                            }
-                            if (ma == 2)
-                            {
-                                printAndReceive.PrintMenu2();
-                                int me;
-                                me = int.Parse(Console.ReadLine());
-
-                                if (me == 1)
-                                {
-                                    //agregar metodo mostrar playlist
-                                }
-                                if (me == 2)
-                                {
-                                    //agregar metodo Crear Playlis
-                                }
-                                if (me == 3)
-                                {
-                                    //agregar metodo Eliminar playlist
-                                }
-                            }
-                            if (ma == 3)
-                            {
-                                printAndReceive.PrintMenu3();
-
-                                int me;
-                                me = int.Parse(Console.ReadLine());
-
-                                if (me == 1)
-                                {
-                                    //agregar metodo mostrar playlist
-                                }
-                                if (me == 2)
-                                {
-                                    //agregar metodo Crear Playlis
-                                }
-                                if (me == 3)
-                                {
-                                    //agregar metodo Eliminar playlist
-                                }
-                            }
-
-                            //completar dependiento de metodos
-                            if (ma == 4)
-                            {
-                                printAndReceive.PrintMenu4();
-                            }
-                            if (ma == 5)
-                            {
-                                printAndReceive.PrintMenu5();
-                            }
-
-                            if (ma == 6)
-                            {
-                                AddSong1(cancion);
-                                break;
-
-
-                            }
-                            if (ma == 7)
-                            {
-                                AddVideo(video);
-                                break;
-                            }
-
-                            if (ma == 8)
-                            {
-                                printAndReceive.PrintMenu6();
-                                int me;
-                                me = int.Parse(Console.ReadLine());
-                                if (me == 1)
-                                {
-
-
-
-                                }
-                                if (me == 2) { }
-                                if (me == 3) { }
-                                if (me == 4)
-                                { }
-                                if (me == 5) { }
-                                if (me == 6)
-                                {
-                                    server.ChangePassword();
-
-                                    break;
-
-                                }
-                                if (me == 9)
-                                {
-                                    break;
-                                }
-
-                            }
-                            //if (ma == 7)
-                            // {
-                            //printAndReceive.PrintMenu8();
-                            //  break;
-                            //}
+                            Console.WriteLine("Usuario no encontrado");
+                            
                         }
-
                         break;
+                        
 
 
                     case "Salir":
@@ -609,5 +538,7 @@ namespace EntregaProyecto2
             stream.Close();
             return video;
         }
+        
+        
     }
 }
