@@ -8,8 +8,15 @@ namespace EntregaProyecto2
         private string typeFile;
         public List<string> Playlist;
         public List<string> PlaylistFav;
-        public PlaylistSpotifai(string file)
+
+        //Agregadas Alvaro
+        private string nombre; //nombre de la playlist creada
+
+        public string Nombre { get => nombre; set => nombre = value; }
+
+        public PlaylistSpotifai(string file, string nombre)
         {
+            this.nombre = nombre;
             this.typeFile = file;
             Playlist = new List<string>();
             PlaylistFav = new List<string>();
@@ -26,6 +33,10 @@ namespace EntregaProyecto2
         public bool AddQueu()
         {
             return true;
+        }
+        public override string ToString()
+        {
+            return nombre;
         }
     }
 }

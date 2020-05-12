@@ -558,5 +558,17 @@ namespace EntregaProyecto2
             Console.WriteLine();
         }
 
+
+
+
+        //-------------------------------------------------------------------------SERIALIZACION DE LAS PLAYLIST------------------------------------------------------
+
+        static public void AddPlaylistSong(List<PlaylistSpotifai> playlist, List<SongClass> cancion)
+        {
+            Console.WriteLine("Tiene que elegir la cancion que desea agregar. ");
+            ShowSong(cancion);
+
+        }
+
     }
 }
