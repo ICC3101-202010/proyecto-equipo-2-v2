@@ -62,6 +62,7 @@ namespace EntregaProyecto2
         }
         public override string ToString()
         {
+            Console.WriteLine("ACa puede ver el titulo del video, el director, el genero al que pertenece, año de publicacion, duracion, meoria, estudio de grabacion y su palabra clave. ");
             return Title + " " + Director + ": " + Gender + ": " + PublicationYear + ": " + Duration + ": " + Memory + ": " + Study + ": " + Keyword;
         }
 

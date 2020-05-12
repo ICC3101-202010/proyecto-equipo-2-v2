@@ -23,10 +23,14 @@ namespace EntregaProyecto2
             SMSSender smsSender = new SMSSender();
             User user = new User();  
             PrintAndReceive printAndReceive = new PrintAndReceive();
-            SongClass cancion = new SongClass();
-            Video video = new Video();
+            
+            //SongClass cancion = new SongClass(); Ya instancie este objeto.
+            //Video video = new Video(); // YA instancie
             ProfileManagment profileManagment = new ProfileManagment();
             IDictionary<User, List<Profile>> diccUserProfiles = new Dictionary<User, List<Profile>>();
+
+            List<SongClass> cancion = new List<SongClass>();
+            List<Video> video = new List<Video>();
 
             //Suscribir los que escuchan los eventos
 
@@ -251,10 +255,12 @@ namespace EntregaProyecto2
 
                                             while (true)
                                             {
+                                                cancion = LoadSong(); //Al momento de iniciar la app, se tienen que cargar las cancoines previamente guardadas.
+                                                video = LoadVideo();
                                                 Console.WriteLine("Bienvenido " + perfilLog.NameProfile);
-                                                Console.WriteLine("1)Importar cancion");
-                                                Console.WriteLine("2)Importar video");//
-                                                Console.WriteLine("3)Ver informacion cancion: ");
+                                                Console.WriteLine("1)Importar cancion"); //Listo
+                                                Console.WriteLine("2)Importar video");// Listo
+                                                Console.WriteLine("3)Ver informacion cancion: "); //Falta ver info de video
                                                 Console.WriteLine("4)Buscar");
                                                 Console.WriteLine("5)Agregar imagenes");
                                                 Console.WriteLine("6)Crear playlist de canciones: ");
@@ -269,7 +275,8 @@ namespace EntregaProyecto2
                                                 {
                                                     if (user1.Plan=="premium" || user1.Plan=="familiar")
                                                     {
-                                                        //aca va el desarollo de importar funcion
+                                                        AddSong(cancion);
+                                                        SaveSong(cancion);
                                                     }
                                                     else
                                                     {
@@ -280,7 +287,8 @@ namespace EntregaProyecto2
                                                 {
                                                     if (user1.Plan == "premium" || user1.Plan == "familiar")
                                                     {
-                                                        //aca va el desarollo de importar funcion
+                                                        AddVideo(video);
+                                                        SaveVideo(video); // Al momento de añadirlo se guarda automaticamente.
                                                     }
                                                     else
                                                     {
@@ -291,6 +299,7 @@ namespace EntregaProyecto2
                                                 else if (menuPerfil == 3)
                                                 {
                                                     //accesible para basico, hacer aca el desarrollo de la funcion
+                                                    ShowSong(cancion);
                                                 }
                                                 else if (menuPerfil == 4)
                                                 {
