@@ -260,14 +260,13 @@ namespace EntregaProyecto2
                                                 Console.WriteLine("Bienvenido " + perfilLog.NameProfile);
                                                 Console.WriteLine("1)Importar cancion"); //Listo
                                                 Console.WriteLine("2)Importar video");// Listo
-                                                Console.WriteLine("3)Ver informacion cancion: "); //Falta ver info de video
-                                                Console.WriteLine("4)Buscar canciones");
-                                                Console.WriteLine("5)Buscar videos");
-                                                Console.WriteLine("6)Agregar imagenes");
-                                                Console.WriteLine("7)Crear playlist de canciones: ");
-                                                Console.WriteLine("8)Crear playlist de videos: ");
+                                                Console.WriteLine("3)Buscar canciones");
+                                                Console.WriteLine("4)Buscar videos");
+                                                Console.WriteLine("5)Agregar imagenes");
+                                                Console.WriteLine("6)Crear playlist de canciones: ");
+                                                Console.WriteLine("7)Crear playlist de videos: ");
                          
-                                                Console.WriteLine("9)salir");
+                                                Console.WriteLine("8)salir");
                                                 Console.WriteLine("Seleccione un numero del menu: ");
                                                 string rt = Console.ReadLine();
                                                 int menuPerfil = Int32.Parse(rt);
@@ -299,7 +298,7 @@ namespace EntregaProyecto2
                                                 }
                                                 else if (menuPerfil == 3)
                                                 {
-                                                    //accesible para basico, hacer aca el desarrollo de la funcion
+                                                    Console.WriteLine("Buscar cancion: ");
                                                     ShowSong(cancion);
                                                 }
                                                 else if (menuPerfil == 4)
@@ -308,11 +307,6 @@ namespace EntregaProyecto2
                                                 }
                                                 else if (menuPerfil == 5)
                                                 {
-                                                    
-                                                }
-                                                else if (menuPerfil == 6)
-                                                {
-
                                                     if (user1.Plan == "premium" || user1.Plan == "familiar")
                                                     {
                                                         //aca va el desarollo de importar funcion
@@ -321,6 +315,11 @@ namespace EntregaProyecto2
                                                     {
                                                         Console.WriteLine("No puede acceder a esta funcion con plan basico");
                                                     }
+                                            }
+                                                else if (menuPerfil == 6)
+                                                {
+
+                                                   
                                                 }
                                                 else if (menuPerfil == 7)
                                                 {
@@ -328,13 +327,10 @@ namespace EntregaProyecto2
                                                 }
                                                 else if (menuPerfil == 8)
                                                 {
-                                                    
 
+                                                       break;
                                                 }
-                                                else if (menuPerfil == 9)
-                                                {
-                                                    break;
-                                                }
+                                                
                                                 else
                                                 {
                                                     Console.WriteLine("El numero no es valido, vuelva a ingresarlo");
