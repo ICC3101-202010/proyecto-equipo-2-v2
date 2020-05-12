@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace EntregaProyecto2
 {
+    [Serializable]
     public class Profile
     {
         private string nameProfile;

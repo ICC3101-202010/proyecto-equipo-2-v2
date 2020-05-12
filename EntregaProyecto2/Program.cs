@@ -21,7 +21,9 @@ namespace EntregaProyecto2
             Server server = new Server(database);
             MailSender mailSender = new MailSender();
             SMSSender smsSender = new SMSSender();
-            User user = new User();  
+            User user = new User();
+            DateTime hora = new DateTime();
+            User user2 = new User("Alvaro", "123123","123","Alvaro",22,"Cespedes","maculino","Chilena","Estudiante","aeces","123123","premium",hora);
             PrintAndReceive printAndReceive = new PrintAndReceive();
             
             //SongClass cancion = new SongClass(); Ya instancie este objeto.
@@ -32,8 +34,10 @@ namespace EntregaProyecto2
             List<SongClass> cancion = new List<SongClass>();
             List<Video> video = new List<Video>();
             List<User> usuarios = new List<User>();
+            usuarios.Add(user2); //Sirve para empezar el programa con un usuario
             usuarios = server.UsersList;  //Serializar EsTOOOOOOO
-
+            SaveUser(usuarios);
+            usuarios = LoadUser();
             //Suscribir los que escuchan los eventos
 
             //1- Suscribir OnRegistrado de mailSender para que escuche el evento Registrado enviado por servidor
@@ -65,7 +69,7 @@ namespace EntregaProyecto2
                         string usr = Console.ReadLine();
                         Console.WriteLine("Ingresa tu contraseña: ");
                         string pswd = Console.ReadLine();
-                        User user1= new User();
+                        User user1 = new User();
 
                         Console.Clear();
                         foreach (User u in usuarios)
@@ -362,15 +366,22 @@ namespace EntregaProyecto2
 
 
 
+                                
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Usuario no encontrado");
+
+                            else
+                            {
+                                Console.WriteLine("Usuario no encontrado");
+                                break;
+
+                            }
                             
                         }
+
                         break;
-                        
+
+
+
 
 
                     case "Salir":
@@ -399,10 +410,6 @@ namespace EntregaProyecto2
         //Metodo para agregar usuarios y quede guardados. 
         //Ver como se agrega, debido que esta registrado.
         //Ver con mati
-        static public void AddUser(List<User> usuario)
-        {
-            Console.WriteLine("nada");
-        }
 
         //Metodo para guardar el usuario registrado.
         //Se tiene que hacer cada vez que se registra un usuario. 
@@ -420,7 +427,7 @@ namespace EntregaProyecto2
         static private List<User> LoadUser()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
             List<User> usuario = (List<User>)formatter.Deserialize(stream);
             stream.Close();
             return usuario;
@@ -545,17 +552,37 @@ namespace EntregaProyecto2
             }
             Console.WriteLine();
         }
-
-
-
-
-        //-------------------------------------------------------------------------SERIALIZACION DE LAS PLAYLIST------------------------------------------------------
-
-        static public void AddPlaylistSong(List<PlaylistSpotifai> playlist, List<SongClass> cancion)
+        //--------------------------------------------- SERIALIZAR PLAYLIST -------------------------------------
+        static public void SavePlaylistSong(Dictionary<Profile, List<SongClass>> playlist)
         {
-            Console.WriteLine("Tiene que elegir la cancion que desea agregar. ");
-            ShowSong(cancion);
-
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, playlist);
+            stream.Close();
+        }
+        static private Dictionary<Profile, List<SongClass>> LoadDictionarySong()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            Dictionary<Profile, List<SongClass>> playlist = (Dictionary<Profile, List<SongClass>>)formatter.Deserialize(stream);
+            stream.Close();
+            return playlist;
+        }
+        // -------------------------------------------- Diccionario User y perfil ------------------------------
+        static public void SaveDic(IDictionary<User, List<Profile>> diccUserProfiles)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, diccUserProfiles);
+            stream.Close();
+        }
+        static private IDictionary<User, List<Profile>> LoadDictionary()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            IDictionary<User, List<Profile>> diccUserProfiles = (IDictionary<User, List<Profile>>)formatter.Deserialize(stream);
+            stream.Close();
+            return diccUserProfiles;
         }
 
     }

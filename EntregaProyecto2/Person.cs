@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 namespace EntregaProyecto2
 {
+    [Serializable]
     public class Person
 
     {
