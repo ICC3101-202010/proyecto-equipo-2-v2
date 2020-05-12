@@ -440,7 +440,7 @@ namespace EntregaProyecto2
             Console.WriteLine(" ");
         }
         //------------ IMPORTAR CANCION ----------------------------------------------
-        static public void AddSong1(SongClass cancion)
+        static public void AddSong(List<SongClass> cancion)
         {
             Console.Write("Titulo de la cancion: ");
             string title = Console.ReadLine();
@@ -463,9 +463,9 @@ namespace EntregaProyecto2
             Console.WriteLine("Letra de la cancion: ");
             string lyrics = Console.ReadLine();
             var rand = new Random();
-            rand.Next(1, 50);
+            //rand.Next(1, 50);
             // Arreglar despues. por aohra sera 5
-            cancion.AddSong(new SongClass(gender, publicationYear, title, 5, 100, study, keyword, composer, singer, album, lyrics, format));
+            cancion.Add(new SongClass(gender, publicationYear, title, 5, 100, study, keyword, composer, singer, album, lyrics, format));
 
 
         }
@@ -482,21 +482,21 @@ namespace EntregaProyecto2
         static private List<SongClass> LoadSong()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
             List<SongClass> cancion = (List<SongClass>)formatter.Deserialize(stream);
             stream.Close();
             return cancion;
         }
-        static public void ShowPeople(List<SongClass> cancion)
+        static public void ShowSong(List<SongClass> cancion)
         {
             foreach (SongClass x in cancion)
             {
                 Console.WriteLine(x);
             }
-            Console.WriteLine(" ");
+            Console.WriteLine();
         }
         //------------ IMPORTAR VIDEO ----------------------------------------
-        static public void AddVideo( Video video)
+        static public void AddVideo( List<Video> video)
         {
             Console.Write("Titulo del video: ");
             string title = Console.ReadLine();
@@ -518,7 +518,7 @@ namespace EntregaProyecto2
             string format = Console.ReadLine();
             //Duracion 5 memoria 100 por ahora
             //Arreglar despues.
-            video.AddVideo(new Video(gender, año, title, 5, 100, study, keyword, description, mainActor, director, format));
+            video.Add(new Video(gender, año, title, 5, 100, study, keyword, description, mainActor, director, format));
         }
 
         //Metodos para Serializar Videos
@@ -533,12 +533,21 @@ namespace EntregaProyecto2
         static private List<Video> LoadVideo()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
             List<Video> video = (List<Video>)formatter.Deserialize(stream);
             stream.Close();
             return video;
         }
-        
-        
+
+        //Mostrar Los videos que tieene el perfil.
+        static public void ShowVideo(List<Video> video)
+        {
+            foreach (Video x in video)
+            {
+                Console.WriteLine(x);
+            }
+            Console.WriteLine();
+        }
+
     }
 }

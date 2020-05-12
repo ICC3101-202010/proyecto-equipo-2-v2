@@ -4,7 +4,7 @@ using System.Threading;
 namespace EntregaProyecto2
 {
     [Serializable]
-    public class Video : AbsMaster
+    public class Video 
     {
         //private List<Actor> actors;
         private string description;
@@ -12,6 +12,14 @@ namespace EntregaProyecto2
         private string director; //
         private string format;
         private List<Video> videos;
+
+        private string gender;
+        private string publicationYear;
+        private string title;
+        private int duration;
+        private int memory;
+        private string study;
+        private string keyword;
 
         public Video(string gender, string publicationYear,
                      string title, int duration, int memory, string study, string keyword,
@@ -40,14 +48,21 @@ namespace EntregaProyecto2
         public string Description { get => description; set => description = value; }
         public string MainActor { get => mainActor; set => mainActor = value; }
         public List<Video> Videos1 { get => videos; set => videos = value; }
+        public string Gender { get => gender; set => gender = value; }
+        public string PublicationYear { get => publicationYear; set => publicationYear = value; }
+        public string Title { get => title; set => title = value; }
+        public int Duration { get => duration; set => duration = value; }
+        public int Memory { get => memory; set => memory = value; }
+        public string Study { get => study; set => study = value; }
+        public string Keyword { get => keyword; set => keyword = value; }
 
         public void AddData() //Cambiar UML  void
         {
 
         }
-        public void AddVideo(Video video)
+        public override string ToString()
         {
-            videos.Add(video);
+            return Title + " " + Director + ": " + Gender + ": " + PublicationYear + ": " + Duration + ": " + Memory + ": " + Study + ": " + Keyword;
         }
 
     }
