@@ -31,6 +31,8 @@ namespace EntregaProyecto2
 
             List<SongClass> cancion = new List<SongClass>();
             List<Video> video = new List<Video>();
+            List<User> usuarios = new List<User>();
+            usuarios = server.UsersList;  //Serializar EsTOOOOOOO
 
             //Suscribir los que escuchan los eventos
 
@@ -66,20 +68,14 @@ namespace EntregaProyecto2
                         User user1= new User();
 
                         Console.Clear();
-                        if (server.InicioSecion(usr, pswd)==true)
+                        foreach (User u in usuarios)
                         {
-                            foreach (User cc in server.UsersList)
+                            if (u.NameUser == usr && u.Password == pswd)
                             {
-                                if (cc.NameUser == usr)
-                                {
-                                    user1 = cc;
-                                    break;
-                                }
-                                
-                            }
-                            //Menu usuario
-                            
-                                
+                                user1 = u;
+                                //Menu usuario
+
+
                                 while (true)
                                 {
                                     Console.WriteLine("BIENVENIDO A SPOTFLIX");
@@ -92,77 +88,95 @@ namespace EntregaProyecto2
                                     int escoger = Int32.Parse(es);
                                     if (escoger == 1)
                                     {
-                                        
-                                            
-                                            while (true)
+
+
+                                        while (true)
+                                        {
+                                            Console.WriteLine("Menu administracion de perfiles \n1)Agregar Perfil \n2)Ver perfiles \n3)Cambiar Perfil \n4)Eliminar perfil \n5)Salir");
+                                            Console.WriteLine("ingrese el numero de la opcion que desea realizar: ");
+                                            string ooo = Console.ReadLine();
+                                            int opop = Int32.Parse(ooo);
+                                            if (opop == 1)
                                             {
-                                                Console.WriteLine("Menu administracion de perfiles \n1)Agregar Perfil \n2)Ver perfiles \n3)Cambiar Perfil \n4)Eliminar perfil \n5)Salir");
-                                                Console.WriteLine("ingrese el numero de la opcion que desea realizar: ");
-                                                string ooo = Console.ReadLine();
-                                                int opop = Int32.Parse(ooo);
-                                                if (opop == 1)
+                                                if (user1.Plan == "familiar")
                                                 {
-                                                    if(user1.Plan=="familiar")
+                                                    Console.WriteLine("Agregar perfil\n");
+                                                    if (diccUserProfiles.ContainsKey(user1) == true)
                                                     {
-                                                        Console.WriteLine("Agregar perfil\n");
-                                                        if (diccUserProfiles.ContainsKey(user1) == true)
+                                                        if (diccUserProfiles[user1].Count <= 5)
                                                         {
-                                                            if (diccUserProfiles[user1].Count<= 5)
+                                                            profileManagment.AddProfile();
+                                                            if (diccUserProfiles.ContainsKey(user1) == true)
                                                             {
-                                                                profileManagment.AddProfile();
-                                                                if (diccUserProfiles.ContainsKey(user1) == true)
-                                                                {
-                                                                    diccUserProfiles.Remove(user1);
-                                                                    diccUserProfiles.Add(user1, profileManagment.Profiles);
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                Console.WriteLine("Ya alcanzo su limite de perfiles");
+                                                                diccUserProfiles.Remove(user1);
+                                                                diccUserProfiles.Add(user1, profileManagment.Profiles);
                                                             }
                                                         }
                                                         else
                                                         {
-                                                             profileManagment.AddProfile();
-                                                             diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                            Console.WriteLine("Ya alcanzo su limite de perfiles");
                                                         }
                                                     }
-                                                    if(user1.Plan=="premium")
+                                                    else
                                                     {
-                                                        Console.WriteLine("Agregar perfil\n");
-                                                        if (diccUserProfiles.ContainsKey(user1) == true)
+                                                        profileManagment.AddProfile();
+                                                        diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                    }
+                                                }
+                                                if (user1.Plan == "premium")
+                                                {
+                                                    Console.WriteLine("Agregar perfil\n");
+                                                    if (diccUserProfiles.ContainsKey(user1) == true)
+                                                    {
+                                                        if (diccUserProfiles[user1].Count == 0)
                                                         {
-                                                            if (diccUserProfiles[user1].Count== 0)
+                                                            profileManagment.AddProfile();
+                                                            if (diccUserProfiles.ContainsKey(user1) == true)
                                                             {
-                                                                profileManagment.AddProfile();
-                                                                if (diccUserProfiles.ContainsKey(user1) == true)
-                                                                {
-                                                                    diccUserProfiles.Remove(user1);
-                                                                    diccUserProfiles.Add(user1, profileManagment.Profiles);
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                Console.WriteLine("Ya alcanzo su limite de perfiles");
+                                                                diccUserProfiles.Remove(user1);
+                                                                diccUserProfiles.Add(user1, profileManagment.Profiles);
                                                             }
                                                         }
                                                         else
                                                         {
-                                                             profileManagment.AddProfile();
-                                                             diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                            Console.WriteLine("Ya alcanzo su limite de perfiles");
                                                         }
                                                     }
+                                                    else
+                                                    {
+                                                        profileManagment.AddProfile();
+                                                        diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                    }
                                                 }
-                                                else if (opop == 2)
+                                            }
+                                            else if (opop == 2)
+                                            {
+                                                Console.WriteLine("Ver perfiles\n");
+                                                profileManagment.SeeProfile();
+
+                                            }
+                                            else if (opop == 3)
+                                            {
+                                                Console.WriteLine("Cambiar Perfil\n");
+                                                profileManagment.ChangeProfile();
+                                                if (diccUserProfiles.ContainsKey(user1) == true)
                                                 {
-                                                    Console.WriteLine("Ver perfiles\n");
-                                                    profileManagment.SeeProfile();
-                                                    
+                                                    diccUserProfiles.Remove(user1);
+                                                    diccUserProfiles.Add(user1, profileManagment.Profiles);
                                                 }
-                                                else if (opop == 3)
+                                                else
                                                 {
-                                                    Console.WriteLine("Cambiar Perfil\n");
-                                                    profileManagment.ChangeProfile();
+                                                    diccUserProfiles.Add(user1, profileManagment.Profiles);
+                                                }
+
+
+
+                                            }
+                                            else if (opop == 4)
+                                            {
+                                                Console.WriteLine("Eliminar Perfil\n");
+                                                if (profileManagment.DeleteProfile() == true)
+                                                {
                                                     if (diccUserProfiles.ContainsKey(user1) == true)
                                                     {
                                                         diccUserProfiles.Remove(user1);
@@ -172,56 +186,38 @@ namespace EntregaProyecto2
                                                     {
                                                         diccUserProfiles.Add(user1, profileManagment.Profiles);
                                                     }
-
-                                                    
-
-                                                }
-                                                else if (opop == 4)
-                                                {
-                                                    Console.WriteLine("Eliminar Perfil\n");
-                                                    if (profileManagment.DeleteProfile() == true)
-                                                    {
-                                                        if (diccUserProfiles.ContainsKey(user1) == true)
-                                                        {
-                                                            diccUserProfiles.Remove(user1);
-                                                            diccUserProfiles.Add(user1, profileManagment.Profiles);
-                                                        }
-                                                        else
-                                                        {
-                                                            diccUserProfiles.Add(user1, profileManagment.Profiles);
-                                                        }
-                                                    }
-                                                    
-                                                }
-                                                else if (opop == 5)
-                                                {
-
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    Console.WriteLine("Opcion no valida vuelva a ingresarla");
                                                 }
 
                                             }
+                                            else if (opop == 5)
+                                            {
 
-                                            
-                                        
-                                        
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Opcion no valida vuelva a ingresarla");
+                                            }
+
+                                        }
+
+
+
+
                                     }
-                                    
+
 
                                     else if (escoger == 2)
                                     {
 
-                                        List < Profile > listaperfiles = new List<Profile>();
+                                        List<Profile> listaperfiles = new List<Profile>();
                                         Profile perfilLog = new Profile();
 
                                         Console.WriteLine("Ingrese a su perfil");
                                         int hh = 1;
                                         foreach (KeyValuePair<User, List<Profile>> item in diccUserProfiles)
                                         {
-                                            if (item.Key==user1)
+                                            if (item.Key == user1)
                                             {
                                                 listaperfiles = item.Value;
                                                 break;
@@ -241,8 +237,8 @@ namespace EntregaProyecto2
                                                 int numPerfil = Int32.Parse(gh);
                                                 if (numPerfil <= listaperfiles.Count && numPerfil != 0)
                                                 {
-                                                    perfilLog=listaperfiles[numPerfil - 1];
-                                                    Console.WriteLine("El perfil escogido es: "+perfilLog.NameProfile);
+                                                    perfilLog = listaperfiles[numPerfil - 1];
+                                                    Console.WriteLine("El perfil escogido es: " + perfilLog.NameProfile);
                                                     break;
                                                 }
                                                 else
@@ -251,7 +247,7 @@ namespace EntregaProyecto2
                                                 }
                                             }
                                             //Menu perfiles
-                                            
+
 
                                             while (true)
                                             {
@@ -265,7 +261,7 @@ namespace EntregaProyecto2
                                                 Console.WriteLine("5)Agregar imagenes");
                                                 Console.WriteLine("6)Crear playlist de canciones: ");
                                                 Console.WriteLine("7)Crear playlist de videos: ");
-                         
+
                                                 Console.WriteLine("8)salir");
                                                 Console.WriteLine("Seleccione un numero del menu: ");
                                                 string rt = Console.ReadLine();
@@ -273,7 +269,7 @@ namespace EntregaProyecto2
 
                                                 if (menuPerfil == 1)
                                                 {
-                                                    if (user1.Plan=="premium" || user1.Plan=="familiar")
+                                                    if (user1.Plan == "premium" || user1.Plan == "familiar")
                                                     {
                                                         AddSong(cancion);
                                                         SaveSong(cancion);
@@ -298,7 +294,7 @@ namespace EntregaProyecto2
                                                 }
                                                 else if (menuPerfil == 3)
                                                 {
-                                                    Console.WriteLine("Buscar cancion: ");
+                                                    Console.WriteLine("");
                                                     ShowSong(cancion);
                                                 }
                                                 else if (menuPerfil == 4)
@@ -315,11 +311,11 @@ namespace EntregaProyecto2
                                                     {
                                                         Console.WriteLine("No puede acceder a esta funcion con plan basico");
                                                     }
-                                            }
+                                                }
                                                 else if (menuPerfil == 6)
                                                 {
 
-                                                   
+
                                                 }
                                                 else if (menuPerfil == 7)
                                                 {
@@ -328,9 +324,9 @@ namespace EntregaProyecto2
                                                 else if (menuPerfil == 8)
                                                 {
 
-                                                       break;
+                                                    break;
                                                 }
-                                                
+
                                                 else
                                                 {
                                                     Console.WriteLine("El numero no es valido, vuelva a ingresarlo");
@@ -340,10 +336,10 @@ namespace EntregaProyecto2
                                         else
                                         {
                                             Console.WriteLine("No hay perfiles para realizar esta operacion");
-                                            
+
                                         }
-                                        
-                                       
+
+
                                     }
                                     else if (escoger == 3)
                                     {
@@ -352,7 +348,7 @@ namespace EntregaProyecto2
                                     else if (escoger == 4)
                                     {
                                         break;
-                                        
+
                                     }
                                     else
                                     {
@@ -360,12 +356,13 @@ namespace EntregaProyecto2
 
                                     }
 
-                                
+
                                 }
 
-                                
 
-                           
+
+
+                            }
                         }
                         else
                         {
@@ -560,9 +557,6 @@ namespace EntregaProyecto2
             ShowSong(cancion);
 
         }
-        //-------------------------------------------------------------------------SERIALIZACION DE LAS PLAYLIST------------------------------------------------------
 
-
-
-    }   
+    }
 }
