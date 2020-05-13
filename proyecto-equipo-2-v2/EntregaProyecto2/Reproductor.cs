@@ -5,11 +5,10 @@ using System.Timers;
 
 namespace EntregaProyecto2
 {
-<<<<<<< HEAD
-    class Reproductor : Timer// Guarda el estado de la cancion.
-=======
+
+    // Guarda el estado de la cancion.
+
     class Reproductor :Timer// Guarda el estado de la cancion.
->>>>>>> 049b70818614190262b3636b174133317e8dffd2
     {
         private DateTime _inicio;
 
@@ -22,13 +21,12 @@ namespace EntregaProyecto2
             base.Interval = intervalo;
             this.Elapsed += Tic;
         }
-<<<<<<< HEAD
+
         public Reproductor()
         {
 
         }
-=======
->>>>>>> 049b70818614190262b3636b174133317e8dffd2
+
 
         public void Iniciar()
         {

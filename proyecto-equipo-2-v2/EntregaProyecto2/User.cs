@@ -65,28 +65,7 @@ namespace EntregaProyecto2
         public void OnEmailSent(object source, EventArgs args)
         {
 
-            Console.WriteLine("¿Desea verificar el correo ?\n\n");
-            Console.WriteLine("1)SI");
-            Console.WriteLine("2)NO");
-            string a = Console.ReadLine();
-            int num = Convert.ToInt32(a);
-            if (num == 1)
-            {
-
-                OnEmailVerified(this, new EventArgs());
-
-            }
-
-            else if (num == 2 )
-            {
-                Console.WriteLine("Email no verificado ");
-            }
-            else
-            {
-                Thread.Sleep(2000);
-                Console.WriteLine("opcion ingresada invalida, se volvera al menu principal");
-                Thread.Sleep(2000);
-            }
+           
 
         }
 

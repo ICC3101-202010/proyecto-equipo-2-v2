@@ -152,13 +152,13 @@ namespace EntregaProyecto2
                         server.Register(usr, email, psswd, number, planSeleccionado, infopago);
                         Console.WriteLine("usuario creado");
 
-                       // SaveUser(usuarios);
-                        //usuarios = LoadUser();
+                        SaveUser(usuarios);
+                        usuarios = LoadUser();
 
                         break;
 
                     case "LogIn":
-                        //usuarios = LoadUser();
+                        usuarios = LoadUser();
                         Console.WriteLine("Ingresa tu nombre de usuario: ");
                         string usr1 = Console.ReadLine();
                         Console.WriteLine("Ingresa tu contraseña: ");

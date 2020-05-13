@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "/Users/antoocb/.nuget/packages/": {}
+    "/Users/matiascornejolazcano/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/EntregaProyecto2.csproj",
+      "projectUniqueName": "/Users/matiascornejolazcano/Desktop/proyecto-equipo-2-v2/proyecto-equipo-2-v2/EntregaProyecto2/EntregaProyecto2.csproj",
       "projectName": "EntregaProyecto2",
-      "projectPath": "/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/EntregaProyecto2.csproj",
-      "packagesPath": "/Users/antoocb/.nuget/packages/",
-      "outputPath": "/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/obj/",
+      "projectPath": "/Users/matiascornejolazcano/Desktop/proyecto-equipo-2-v2/proyecto-equipo-2-v2/EntregaProyecto2/EntregaProyecto2.csproj",
+      "packagesPath": "/Users/matiascornejolazcano/.nuget/packages/",
+      "outputPath": "/Users/matiascornejolazcano/Desktop/proyecto-equipo-2-v2/proyecto-equipo-2-v2/EntregaProyecto2/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/antoocb/.config/NuGet/NuGet.Config"
+        "/Users/matiascornejolazcano/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -56,7 +56,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
       }
     }
   }
