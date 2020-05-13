@@ -34,7 +34,7 @@ namespace EntregaProyecto2
 
         public DataBase Data { get; }
         public int OnEmailVerified { get; internal set; }
-        
+
 
         public Server(DataBase data)
         {
@@ -86,7 +86,7 @@ namespace EntregaProyecto2
                 string newPsswd = Console.ReadLine();
                 Data.ChangeEmail(usr, newPsswd);
                 List<string> data = Data.GetData(usr);
-                
+
                 Console.WriteLine("Email cambiado con exito\n");
                 Thread.Sleep(2000);
                 Console.WriteLine("secion cerrada, para continuar ingrese nuevamente");
@@ -160,7 +160,7 @@ namespace EntregaProyecto2
             {
 
                 Console.WriteLine("[!] ERROR: " + result + "\n");
-                
+
             }
         }
 
@@ -171,9 +171,9 @@ namespace EntregaProyecto2
 
 
 
-        public bool InicioSecion(string usr,string pswd)
+        public bool InicioSecion(string usr, string pswd)
         {
-           
+
             string result = Data.LogIn(usr, pswd);
             if (result == null)
             {
@@ -185,86 +185,12 @@ namespace EntregaProyecto2
                 Console.WriteLine("[!] ERROR: " + result + "\n");
                 return false;
             }
-            
+
         }
 
-        public void Register()
+        public void Register(string usr, string email, string psswd, string number, string planSeleccionado, string infopago)
         {
 
-            Console.Write("Bienvenido! Ingrese sus datos de registro \nUsuario: ");
-            string usr = Console.ReadLine();
-
-
-            Console.Write("Correo: ");
-            string email = Console.ReadLine();
-
-            Console.Write("Contraseña: ");
-            string psswd = Console.ReadLine();
-
-            Console.Write("Numero de telefono: ");
-            string number = Console.ReadLine();
-
-            Console.Write("Nombre: ");
-            string name = Console.ReadLine();
-
-            Console.Write("Apellido: ");
-            string lastname = Console.ReadLine();
-
-            Console.Write("Edad: ");
-            string e = Console.ReadLine();
-            int edad= Int32.Parse(e);
-
-            Console.Write("Genero: ");
-            string gender = Console.ReadLine();
-
-            Console.Write("Nacionalidad: ");
-            string nationality= Console.ReadLine();
-
-            Console.Write("Ocupacion: ");
-            string ocuppation = Console.ReadLine();
-
-            Console.WriteLine("ingrese su numero de tarjeta"); // hafe
-            string infopago = Console.ReadLine();
-
-            string planSeleccionado;
-
-            while (true)
-            {
-                Console.WriteLine("Planes: \n");
-                Console.WriteLine("1)plan Basico \n");
-                Console.WriteLine("2)plan premiun (personal) $3,990\n");
-                Console.WriteLine("3)plan familiar (4 usuarios) $7,990\n");
-                Console.WriteLine("Ingrese el numero de plan que desea: ");
-                string op = Console.ReadLine();
-                int plan = Int32.Parse(op);
-                
-
-                if (plan == 1)
-                {
-                    Console.WriteLine("Plan basico seleccionado, no se realizaran cargos en su tarjeta ");
-                    planSeleccionado = "basico";
-                    break;
-                }
-                else if (plan == 2)
-                {
-                    Console.WriteLine("Plan premium seleccionado, se realizara un cargo de $3,990 en su tarjeta ");
-                    planSeleccionado = "premium";
-                    break;
-                }
-                else if (plan == 3)
-                {
-                    Console.WriteLine("Plan familiar seleccionado, se realizara un cargo de $7,990 en su tarjeta ");
-                    planSeleccionado = "familiar";
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("numero invalido, ingreselo nuevamente");
-                }
-
-                
-            }
-            DateTime dateRegister = new DateTime();
 
             string verificationLink = GenerateLink(usr);
             string result = Data.AddUser(new List<string>()
@@ -273,7 +199,7 @@ namespace EntregaProyecto2
             if (result == null)
             {
 
-                OnRegistered(usr, psswd, verificationlink: verificationLink, email: email, plan: planSeleccionado, infopago: infopago);
+                OnRegistered(usr, psswd, verificationlink: verificationLink, email: email, plan: planSeleccionado, infopago);
 
 
             }
@@ -282,9 +208,7 @@ namespace EntregaProyecto2
 
                 Console.WriteLine("[!] ERROR: " + result + "\n");
             }
-            //Agregar el usario a una lista de usuarios
-            User usuario = new User(usr,number,psswd,name,edad,lastname,gender,nationality,ocuppation,email,infopago,planSeleccionado,dateRegister);
-            UsersList.Add(usuario);
+
 
         }
 
@@ -309,4 +233,3 @@ namespace EntregaProyecto2
         }
     }
 }
-//hh
