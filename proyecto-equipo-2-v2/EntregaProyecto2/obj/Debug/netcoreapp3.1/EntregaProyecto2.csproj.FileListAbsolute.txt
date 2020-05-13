@@ -1,0 +1,10 @@
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/bin/Debug/netcoreapp3.1/EntregaProyecto2.deps.json
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/bin/Debug/netcoreapp3.1/EntregaProyecto2.runtimeconfig.json
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/bin/Debug/netcoreapp3.1/EntregaProyecto2.runtimeconfig.dev.json
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/bin/Debug/netcoreapp3.1/EntregaProyecto2.dll
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/bin/Debug/netcoreapp3.1/EntregaProyecto2.pdb
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/obj/Debug/netcoreapp3.1/EntregaProyecto2.csprojAssemblyReference.cache
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/obj/Debug/netcoreapp3.1/EntregaProyecto2.AssemblyInfoInputs.cache
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/obj/Debug/netcoreapp3.1/EntregaProyecto2.AssemblyInfo.cs
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/obj/Debug/netcoreapp3.1/EntregaProyecto2.dll
+/Users/antoocb/Desktop/proyecto-equipo-2-v2/EntregaProyecto2/obj/Debug/netcoreapp3.1/EntregaProyecto2.pdb
