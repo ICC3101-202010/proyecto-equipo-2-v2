@@ -83,7 +83,7 @@ namespace EntregaProyecto2
                 }
             }
         }
-        public void SearhDirector()
+        public void SearchDirector()
         {
             Video video = new Video();
             Console.WriteLine("Que director quieres buscar? ");
