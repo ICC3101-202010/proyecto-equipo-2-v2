@@ -23,7 +23,7 @@ namespace EntregaProyecto2
             SMSSender smsSender = new SMSSender();
             User user = new User();
             DateTime hora = new DateTime();
-            User user2 = new User("Alvaro", "123123","123","Alvaro",22,"Cespedes","maculino","Chilena","Estudiante","aeces","123123","premium",hora);
+            //User user2 = new User("Alvaro", "123123","123","Alvaro",22,"Cespedes","maculino","Chilena","Estudiante","aeces","123123","premium",hora);
             PrintAndReceive printAndReceive = new PrintAndReceive();
             
             //SongClass cancion = new SongClass(); Ya instancie este objeto.
@@ -34,11 +34,14 @@ namespace EntregaProyecto2
             List<SongClass> cancion = new List<SongClass>();
             List<Video> video = new List<Video>();
             List<User> usuarios = new List<User>(); //Serializacion
+            List<User> usuarios1 = new List<User>();
+
+            //usuarios.Add(user2); //Sirve para empezar el programa con un usuario
             usuarios = server.UsersList;
-            usuarios.Add(user2); //Sirve para empezar el programa con un usuario
+            usuarios1 = LoadUser();
             //Serializar EsTOOOOOOO
-            SaveUser(usuarios);
-            usuarios = LoadUser();
+
+
             //Suscribir los que escuchan los eventos
 
             //1- Suscribir OnRegistrado de mailSender para que escuche el evento Registrado enviado por servidor
@@ -60,23 +63,30 @@ namespace EntregaProyecto2
                 string chosen = ShowOptions(new List<string>() { "Registrarse", "LogIn", "Salir" });
                 switch (chosen)
                 {
+
                     case "Registrarse":
+
                         Console.Clear();
-                        //server.Register();
-                        SaveUser(server.UsersList);
+                        server.Register();
+                        SaveUser(usuarios1);
+                        //SaveUser(server.UsersList);
                         break;
 
                     case "LogIn":
+                        
                         Console.WriteLine("Ingresa tu nombre de usuario: ");
                         string usr = Console.ReadLine();
                         Console.WriteLine("Ingresa tu contraseña: ");
                         string pswd = Console.ReadLine();
                         User user1 = new User();
+                        usuarios.Add(user1);
 
                         Console.Clear();
+                        usuarios = server.UsersList;
+                        
                         foreach (User u in usuarios)
                         {
-                            Console.WriteLine("HOLA");
+                            
                             if (u.NameUser == usr && u.Password == pswd)
                             {
                                 user1 = u;
