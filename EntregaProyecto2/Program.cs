@@ -268,8 +268,8 @@ namespace EntregaProyecto2
 
                                             while (true)
                                             {
-                                                cancion = LoadSong(); //Al momento de iniciar la app, se tienen que cargar las cancoines previamente guardadas.
-                                                video = LoadVideo();
+                                                 //Al momento de iniciar la app, se tienen que cargar las cancoines previamente guardadas.
+                                               
                                                 Console.WriteLine("Bienvenido " + perfilLog.NameProfile);
                                                 Console.WriteLine("1)Importar cancion"); //Listo
                                                 Console.WriteLine("2)Importar video");// Listo
@@ -340,7 +340,8 @@ namespace EntregaProyecto2
                                                 }
                                                 else if (menuPerfil == 8)
                                                 {
-
+                                                    video = LoadVideo();
+                                                    cancion = LoadSong();
                                                     break;
                                                 }
 
@@ -353,7 +354,7 @@ namespace EntregaProyecto2
                                         else
                                         {
                                             Console.WriteLine("No hay perfiles para realizar esta operacion");
-
+                                            
                                         }
 
 
